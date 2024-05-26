@@ -1,0 +1,27 @@
+td.border-top-none {
+  border-top: none !important;
+}
+td.border-bottom-none {
+  border-bottom: none !important;
+}
+td.border-left-none {
+  border-left: none !important;
+}
+td.border-right-none {
+  border-right: none !important;
+}
+td.border-black {
+  border-color: #111 !important;
+}
+td.border-red {
+  border-color: #FF525D !important;
+}
+td.border-blue {
+  border-color: #008CFF !important;
+}
+td.border-green {
+  border-color: #05B64D !important;
+}
+td.border-yellow {
+  border-color: #FFC148 !important;
+}/*# sourceMappingURL=froalaEditorCustomStyle.css.map */

@@ -1,0 +1,413 @@
+/* 공통 */
+.highlight {
+  box-shadow: inset 0 -20px 0 #CFFF69;
+}
+
+.highlight--gray {
+  box-shadow: inset 0 -20px 0 $gray--lighter;
+}
+
+/* main page */
+.main_page {
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    margin: 0 auto;
+    padding-top: 2rem;
+    text-align: center;
+    background: {
+      color: $brand;
+      image: url("../../../assets/img/brand/bg/main_bg_stars.svg");
+    };
+    margin-top: 78px;
+
+    @include mini {
+      margin-top: 56px;
+    }
+
+    h2 {
+      font-size: $size1;
+      span {
+        font-weight: normal;
+      }
+    }
+
+    p {
+      margin-top: 1rem;
+      font-size: $size4;
+    }
+
+    .hero__bottom {
+      width: 100%;
+      height: 300px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      background: {
+        color: $brand;
+        image: url("../../../assets/img/brand/bg/main_bg.svg");
+        size: contain;
+        position: bottom center;
+        repeat: no-repeat
+      };
+    }
+  }
+
+  section {
+    .container {
+      padding: 2.5rem 1rem;
+    }
+
+    .main__thumb {
+      display: flex;
+      gap: 2.5rem;
+      color: $darker;
+      @include mobile {
+        flex-direction: column;
+
+        li {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.5rem;
+
+          img {
+            max-width: 336px;
+          }
+        }
+      }
+
+    }
+  }
+
+  .bg_student {
+    background: {
+      image: url("../../../assets/img/brand/bg/main_student_bg.svg");
+      repeat: no-repeat;
+      position: center 85%;
+    };
+
+    img {
+      vertical-align: bottom;
+    }
+  }
+}
+
+.main__title {
+  width: fit-content;
+  margin: 0 auto;
+
+  h3 {
+    font-size: $size2;
+    margin-bottom: 1rem;
+  }
+  p {
+    color: $gray;
+    margin-bottom: 2rem;
+  }
+}
+
+.main__bubble {
+  width: 100%;
+  max-width: fit-content;
+  margin: 0 auto;
+
+  .row {
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 4px;
+
+    %bubble {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: $gray;
+    }
+
+    p {
+      position: relative;
+      background-color: $gray;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-weight: normal;
+      color: $white;
+
+      &:nth-child(even) {
+        &::before {
+          @extend %bubble;
+          content: '◀';
+          left: -0.75rem;
+        }
+      }
+      &:nth-child(odd) {
+        &::before {
+          @extend %bubble;
+          content: '▶';
+          right: -0.75rem;
+        }
+      }
+    }
+  }
+
+  img {
+    width: 40px;
+  }
+}
+
+/* sub page */
+.sub_page {
+  .hero {
+    height: 204px;
+    background-color: $brand;
+    text-align: center;
+    color: $white;
+
+    .container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: {
+        image: url("../../../assets/img/brand/bg/sub_hero.svg");
+        position: center;
+        repeat: no-repeat;
+      };
+      margin-top: 78px;
+
+      @include mini {
+      margin-top: 56px;
+      }
+    }
+
+    h2 {
+      margin: 0;
+    }
+    p {
+      margin-top: 1rem;
+    }
+  }
+  .sub {
+    min-height: calc(100dvh - 78px - 204px - 280px);
+    .container {
+      padding: 2.5rem 1rem;
+    }
+    @include mini {
+      min-height: calc(100dvh - 56px - 204px - 500px);
+    }
+  }
+  .btns {
+    padding: 2.5rem 0 0;
+  }
+}
+
+/* contents */
+.contents {
+  text-align: center;
+
+  %title_deco {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .contents__title {
+    position: relative;
+    width: fit-content;
+    margin: 0 auto 2.5rem;
+    background: {
+      size: cover;
+    }
+
+    &::before {
+      @extend %title_deco;
+      left: -4.5rem;
+      background: {
+        image: url("../../img/brand/ico/title_deco_1.svg");
+      }
+      @include mobile {
+        content: none;
+      }
+    }
+
+    &::after {
+      @extend %title_deco;
+      right: -4.5rem;
+      background: {
+        image: url("../../img/brand/ico/title_deco_2.svg");
+      }
+      @include mobile {
+        content: none;
+      }
+    }
+
+    h3 {
+      font-size: $size2;
+      box-shadow: inset 0 -20px 0 $gray--lighter;
+    }
+    h4 {
+      font-size: $size3;
+      font-weight: normal;
+      color: $gray;
+    }
+  }
+
+  .lst__thumb {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    color: $gray;
+
+    h5, p {
+      font-size: $size4;
+      padding-bottom: 0.5rem;
+    }
+    img {
+      margin-top: 0.5rem;
+      box-shadow: 0px 4px 40px 0px #0000001A;
+      border-radius: 1rem;
+    }
+  }
+}
+
+/* 하단 공통 무료체험 */
+.contact {
+  .container {
+    margin: 0 auto;
+  }
+  .row {
+    align-items: center !important;
+    justify-content: center;
+    gap: 2rem;
+    @include mobile {
+      flex-direction: column;
+    }
+
+    a {
+      display: block;
+      font-size: $size4;
+      margin-bottom: 1rem;
+    }
+  }
+  .btn--brand {
+    margin: 0 auto;
+  }
+}
+
+/* 이용권 */
+.price__info {
+  margin-bottom: 2.5rem;
+
+  dl {
+    background-color: $gray--lightest;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin: 0;
+  }
+
+  dt {
+    float: left;
+    width: 40px;
+    color: $blue;
+    font-weight: bold;
+    margin-right: 0.5rem;
+
+  }
+  dd {
+    width: calc(100% - 40px);
+    margin-bottom: 1rem;
+    color: $gray;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .price__title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    h3 {
+      font-size: $size3;
+    }
+  }
+}
+
+.price__ticket {
+  display: flex;
+  gap: 2.5rem;
+
+  @include mobile {
+    flex-direction: column;
+  }
+
+  li {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    border: 1px solid $gray--lighter;
+    border-radius: 0.5rem;
+    font-size: $size5;
+    color: $gray;
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .price__badge {
+    color: $brand;
+    background-color: $bg--brand;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.5rem;
+  }
+  strong {
+    color: $brand;
+    font-size: $size3;
+  }
+  h3 {
+    font-size: $size5;
+    color: $darker;
+  }
+  p {
+    width: 100%;
+    margin-top: auto;
+    border-top: 1px solid $gray--lighter;
+    padding-top: 1rem;
+  }
+  b {
+    span {
+      font-weight: normal;
+      text-decoration: line-through;
+    }
+  }
+}
+
+/* 사용 안내 */
+.spec__table {
+  font-size: $size5;
+  text-align: center;
+  border-color: $gray--lighter;
+  color: $gray;
+
+  th, td {
+    border-color: $gray--lighter;
+    padding: 0.5rem 1rem;
+  }
+
+  th {
+    background-color: $gray--lightest;
+  }
+  .btn--brand {
+    width: 100%;
+    max-width: 120px;
+    height: auto;
+    margin: 0 auto;
+  }
+}

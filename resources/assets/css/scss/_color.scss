@@ -1,0 +1,203 @@
+/* Color styles */
+$blue: #008CFF;
+$blue--secondary: #54B2FF;
+$blue--light: #E6F4FF;
+$navy: #284AC1;
+$navy--secondary: #6F86D5;
+$navy--light: #EDF0FB;
+$green: #58CC02;
+$green--secondary: #8FDD55;
+$green--light: #EEFAE6;
+$red: #FF404C;
+$red--secondary: #FFC4C8;
+$red--light: #FFEEEF;
+$yellow: #FFC148;
+$yellow--secondary: #FFD584;
+$yellow--light: #FFF9ED;
+$darker: #23262C;
+$gray: #5C6373;
+$gray--light: #9DA3B1;
+$gray--lighter: #E4E6EA;
+$gray--lightest: #F2F3F5;
+$purple: #7777FF;
+$purple--secondary: #A4A4FF;
+$purple--light: #F1F1FF;
+$white: #ffffff;
+
+/* 예외 */
+$orange: #E56A0B;
+$orange--light: #FF9700;
+$pink: #E94093;
+
+/* Color Name */
+$primary: $blue;
+$secondary: $gray;
+$danger: $red;
+$success: $green;
+$warning: $yellow;
+$empha: $purple;
+$brand: $navy;
+$bg--default: $gray--lightest;
+$bg--success: $green--light;
+$bg--primary: $blue--light;
+$bg--danger: $red--light;
+$bg--empha: $purple--light;
+$bg--warning: $yellow--light;
+$bg--brand: $navy--light;
+$gray: $gray;
+$gray--light: $gray--light;
+$gray--lighter: $gray--lighter;
+$white: $white;
+$darker: $darker;
+
+$colors: (
+  primary: $blue,
+  gray: $gray,
+  success: $green,
+  danger: $red,
+  warning: $yellow,
+  empha: $purple,
+  brand: $brand,
+  white: $white,
+  orange: $orange--light,
+  purple: $purple,
+  lightgray : $gray--lightest,
+  darker: $darker,
+);
+
+$bg_colors: (
+  primary: $blue--light,
+  gray: $gray--lightest,
+  success: $green--light,
+  danger: $red--light,
+  warning: $yellow--light,
+  brand: $navy--light,
+  empha: $purple--secondary,
+  white: $white,
+);
+
+%badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 42px;
+  padding: 0.25rem 0.5rem;
+  border-radius: 2.5rem;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  letter-spacing: -0.2px;
+}
+
+@each $name, $color in $colors {
+  .is--#{"" + $name} {
+    color: #{$color} !important;
+  }
+
+  .badge--#{"" + $name} {
+    @extend %badge;
+    background-color: $color !important;
+    color: $gray ;
+    font-weight: normal;
+
+    svg {
+      margin-right: 0.5rem;
+    }
+  }
+
+  .badge--#{"" + $name}--alpha {
+    @extend %badge;
+    background: rgba($color, 0.3);
+    color: $gray;
+    font-weight: normal;
+
+    svg {
+      color: $color !important;
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+@each $name, $color in $bg_colors {
+  .bg--#{"" + $name} {
+    background-color: #{$color} !important;
+  }
+}
+
+.is--placeholder {
+  color: $gray--light !important;
+}
+
+.badge--lg {
+  min-width: 120px;
+}
+
+body {
+  color: $darker;
+}
+
+//badge 예외
+.badge--gray {
+  color: white;
+  svg {
+    color: white;
+  }
+}
+.badge--brand--alpha {
+  color: $brand
+}
+
+//단원 계통 뱃지
+//1.수와연산 2.규칙성 3.도형 4.측정 5.자료와 가능성
+.badge__semester {
+  display: inline-flex;
+  align-items: center;
+  width: 120px;
+  border-radius: 70px;
+  padding: 4px;
+
+  &::before {
+    content: '';
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  &::after {
+    width: calc(100% - 1.5rem);
+    text-align: center;
+    line-height: 1;
+    font-size: 14px;
+  }
+}
+
+@mixin badge__semester($bg_color, $border_color, $color, $num, $string) {
+  background-color:$bg_color;
+  border: 1px solid $border_color;
+  color: $color;
+  &::before {
+    background: {
+      image: url("../../img/math/planets.svg");
+      repeat: no-repeat;
+      size: cover;
+      position: (-(1.5rem * $num)) 0;
+    };
+    //content: url("../../../assets/img/math/badge__semester--#{$num}.svg");
+  }
+  &::after {
+    content: '#{$string}';
+  }
+}
+
+.badge__semester--1 {
+  @include badge__semester($red--light,$red--secondary, $red, 8, '수와 연산');
+}
+.badge__semester--2 {
+  @include badge__semester($yellow--light,$yellow--secondary, $yellow, 9, '규칙성');
+}
+.badge__semester--3 {
+  @include badge__semester($green--light,$green--secondary, $green, 10, '도형');
+}
+.badge__semester--4 {
+  @include badge__semester($blue--light,$blue--secondary, $blue, 11, '측정');
+}
+.badge__semester--5 {
+  @include badge__semester($purple--light,$purple--secondary, $purple, 12, '자료와 가능성');
+}

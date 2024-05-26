@@ -1,0 +1,149 @@
+/* Color styles */
+$blue: #008CFF;
+$blue--secondary: #54B2FF;
+$blue--light: #E6F4FF;
+$navy: #284AC1;
+$navy--secondary: #6F86D5;
+$navy--light: #EDF0FB;
+$green: #58CC02;
+$green--secondary: #8FDD55;
+$green--light: #EEFAE6;
+$red: #FF404C;
+$red--light: #FFEEEF;
+$yellow: #FFC148;
+$yellow--secondary: #FFD584;
+$yellow--light: #FFF9ED;
+$darker: #23262C;
+$gray: #5C6373;
+$gray--light: #9DA3B1;
+$gray--lighter: #E4E6EA;
+$gray--lightest: #F2F3F5;
+$purple: #7777FF;
+$purple--secondary: #A4A4FF;
+$purple--light: #F1F1FF;
+$white: #ffffff;
+
+/* 예외 */
+$orange: #E56A0B;
+$orange--light: #FF9700;
+$pink: #E94093;
+
+/* Color Name */
+$primary: $blue;
+$secondary: $gray;
+$danger: $red;
+$success: $green;
+$warning: $yellow;
+$empha: $purple;
+$brand: $navy;
+$bg--default: $gray--lightest;
+$bg--success: $green--light;
+$bg--primary: $blue--light;
+$bg--danger: $red--light;
+$bg--empha: $purple--light;
+$bg--warning: $yellow--light;
+$bg--brand: $navy--light;
+$gray: $gray;
+$gray--light: $gray--light;
+$gray--lighter: $gray--lighter;
+$white: $white;
+$darker: $darker;
+
+$colors: (
+  primary: $blue,
+  gray: $gray,
+  success: $green,
+  danger: $red,
+  warning: $yellow,
+  empha: $purple,
+  brand: $brand,
+  white: $white,
+  orange: $orange--light,
+  purple: $purple,
+  placeholder : $gray--lighter,
+  lightgray : $gray--lightest,
+  darker: $darker,
+);
+
+$bg_colors: (
+  primary: $blue--light,
+  gray: $gray--lightest,
+  success: $green--light,
+  danger: $red--light,
+  warning: $yellow--light,
+  brand: $navy--light,
+  empha: $purple--secondary,
+  white: $white,
+);
+
+%badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 42px;
+  padding: 0.25rem 0.5rem;
+  border-radius: 2.5rem;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  letter-spacing: -0.2px;
+}
+
+@each $name, $color in $colors {
+  .is--#{"" + $name} {
+    color: #{$color} !important;
+  }
+
+  .badge--#{"" + $name} {
+    @extend %badge;
+    background-color: $color;
+    color: $gray;
+    font-weight: normal;
+
+    svg {
+      margin-right: 0.5rem;
+    }
+  }
+
+  .badge--#{"" + $name}--alpha {
+    @extend %badge;
+    background: rgba($color, 0.3);
+    color: $gray;
+    font-weight: normal;
+
+    svg {
+      color: $color;
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+@each $name, $color in $bg_colors {
+  .bg--#{"" + $name} {
+    background-color: #{$color} !important;
+  }
+
+}
+
+.is--placeholder {
+  color: $gray--light;
+}
+
+
+.badge--lg {
+  min-width: 120px;
+}
+
+body {
+  color: $darker;
+}
+
+//badge 예외
+.badge--gray {
+  color: white;
+  svg {
+    color: white;
+  }
+}
+.badge--brand--alpha {
+  color: $brand
+}

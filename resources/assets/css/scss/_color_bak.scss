@@ -1,0 +1,152 @@
+/* Color styles */
+$red: #DD0B0B;
+$green: #3FAF5E;
+$pink: #E94093;
+$yellow: #FFA727;
+$blue: #4496EC;
+$purple: #7F6CF8;
+$orange: #FF7A00;
+$beige: #E1DBCB;
+$gray9: #151515;
+$gray8: #353535;
+$gray7: #545454;
+$gray3: #C4C4C4;
+$gray2: #EAEAEA;
+$gray1: #FAFAFA;
+$gray: #C4C4C4;
+$bg: #F0EDE5;
+$bg1: #F0EDE5;
+$bg2: #D9E0EA;
+.text-pink {
+  color: $pink;
+}
+
+.text-orange {
+  color: $orange;
+}
+
+.text-yellow {
+  color: $yellow
+}
+
+.text-blue {
+  color: $blue;
+}
+
+.text-green {
+  color: $green
+}
+
+.text-purple {
+  color: $purple;
+}
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  letter-spacing: -0.4px;
+}
+
+
+/* mixins */
+@mixin border-color($color) {
+  border-color: $color;
+  a:hover {
+    background-color: $color;
+    text-decoration: none;
+  }
+}
+
+@mixin bg-lighten($color) {
+  background-color: lighten($color, 35%);
+}
+
+%radius_sm {
+  border-radius: 0.25rem
+}
+
+%radius {
+  border-radius: 0.5rem
+}
+
+.bg-pink {
+  background-color: $pink;
+}
+
+.bg-blue {
+  background-color: $blue;
+}
+
+.bg-orange {
+  background-color: $orange;
+}
+
+.bg-green {
+  background-color: $green;
+}
+
+.bg-purple {
+  background-color: $purple;
+}
+
+.bg-yellow {
+  background-color: $yellow;
+}
+
+.bg-pink-light {
+  @include bg-lighten($pink);
+}
+
+.bg-blue-light {
+  @include bg-lighten($blue);
+}
+
+.bg-orange-light {
+  @include bg-lighten($orange);
+}
+
+.bg-green-light {
+  @include bg-lighten($green);
+}
+
+.bg-purple-light {
+  background-color: lighten($purple, 25%);
+}
+
+.bg-yellow-light {
+  @include bg-lighten($yellow);
+}
+
+.custom-switch {
+  padding-left: 32+8px;
+
+  label {
+    font-size: 0.875em;
+    color: $gray7;
+    cursor: pointer;
+  }
+
+  .custom-control-label::before {
+    width: 2rem;
+    height: 1.25rem;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    top: 1px;
+    left: -40px;
+    background-color: #D0CCC2;
+    border: none;
+  }
+
+  .custom-control-label::after {
+    width: 0.875rem;
+    height: 0.875rem;
+    top: 4px;
+    left: -37px;
+    background-color: #fff;
+  }
+
+  .custom-control-input:focus ~ .custom-control-label::before {
+    box-shadow: none;
+    border-color: #D0CCC2
+  }
+}
+

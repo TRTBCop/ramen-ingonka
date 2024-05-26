@@ -1,0 +1,1208 @@
+//@charset "utf-8";
+//@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700&subset=korean');
+//
+///* layout */
+//
+//body {
+//  width: 100%;
+//  height: 100%;
+//  margin: 0;
+//  padding: 0;
+//  font-family: 'Noto Sans KR', sans-serif;
+//}
+//
+//* {
+//  box-sizing: border-box;
+//  print-color-adjust: exact;
+//  -webkit-print-color-adjust: exact;
+//}
+//
+//section {
+//  margin: 0;
+//  overflow: visible;
+//  position: relative;
+//  box-sizing: border-box;
+//  page-break-after: always;
+//  aspect-ratio: 1/1.4142;
+//
+//}
+//
+//article {
+//  padding: 5mm;
+//  margin: auto;
+//}
+//
+///* common */
+//p {
+//  word-break: keep-all;
+//  margin: auto;
+//}
+//
+//em {
+//  font-style: normal;
+//}
+//
+//strong {
+//  font-weight: bold;
+//}
+//
+//table, figure {
+//  break-inside: auto;
+//  page-break-inside: auto;
+//  border-collapse: collapse;
+//}
+//
+//ol, ul {
+//  list-style: none;
+//  margin: 0;
+//  padding: 0;
+//}
+//
+//
+//$colors: (
+//  "pink": "#E94093",
+//  "orange": "#FF9700",
+//  "blue": "#4496EC",
+//  "green": "#3FAF5E",
+//  "purple": "#7F6CF8",
+//  "light":"#D9E0EA",
+//  "gray":"#D9E0EA",
+//  "skyblue":"#2DAEE9",
+//  "lightgray":"#858585",
+//);
+//
+//$pink: #E94093;
+//$orange: #FF9700;
+//$blue: #4496EC;
+//$green: #3FAF5E;
+//$purple: #7F6CF8;
+//$gray: #D9E0EA;
+//$skyblue: #2DAEE9;
+//$lightgray: #858585;
+//
+//
+///* cover */
+//.cover {
+//  width: 100%;
+//  padding: 0 54px;
+//  text-align: left;
+//
+//  article {
+//    height: 100%;
+//    display: flex;
+//    flex-direction: column;
+//    justify-content: space-around;
+//    padding: 0;
+//    margin: 0;
+//  }
+//
+//  h1 {
+//    display: block;
+//    width: 104px;
+//    margin: 0;
+//  }
+//
+//  .username {
+//    color: #002775;
+//    font-size: 80px;
+//    margin: 0 0 40px 0;
+//    line-height: 80px;
+//
+//    span {
+//      font-size: 60px;
+//      font-weight: normal;
+//    }
+//  }
+//
+//  .user_box {
+//    width: 50%;
+//    background: #e9ebed;
+//    padding: 8px 16px;
+//
+//    p {
+//      padding-bottom: 8px;
+//
+//      strong {
+//        display: inline-block;
+//        width: 100px;
+//      }
+//
+//      &:last-child {
+//        padding-bottom: 0;
+//      }
+//    }
+//  }
+//
+//  .txt_box {
+//    p {
+//      font-size: 16px;
+//      color: #73787E;
+//      line-height: 28px;
+//
+//      span {
+//        font-weight: bold;
+//      }
+//    }
+//  }
+//}
+//
+///* only screen */
+////@media screen {
+////  .cover {
+////    background-color: #2DAEE9;
+////    color: #fff;
+////  }
+////  .cover article {
+////    display: flex;
+////    flex-direction: column;
+////  }
+////  .cover .box_border {
+////    border: 1px solid #fff;
+////    padding: 1rem
+////  }
+////
+////}
+//.only_screen {
+//  max-width: 800px;
+//  margin: 0 auto;
+//  display: flex;
+//  align-items: center;
+//  justify-content: space-between;
+//  padding: 1rem 0;
+//}
+//
+//
+///* title & counter */
+//article h1 {
+//  font-size: 1.5rem
+//}
+//
+//article h2 {
+//  font-size: 1.5rem;
+//  margin: 2.5rem 0 1rem
+//}
+//
+//article h3 {
+//  font-size: 0.875rem;
+//  font-weight: normal;
+//  margin: 1.5rem 0 1rem;
+//  text-align: center;
+//  color: #353535;
+//}
+//
+//body {
+//  counter-reset: h1 h2;
+//}
+//
+//h1.count {
+//  counter-increment: h1;
+//  counter-reset: h2 0;
+//}
+//
+//h1.count::before {
+//  content: counter(h1, decimal-leading-zero) ". ";
+//  margin-right: 4px
+//}
+//
+//h2.count {
+//  counter-increment: h2;
+//}
+//
+//h2.count::before {
+//  content: counter(h2, decimal-leading-zero) '.';
+//  margin-right: 4px
+//}
+//
+//article h1:first-child,
+//article h2:first-child {
+//  margin-top: 0 !important;
+//}
+//
+//.row_title {
+//  display: flex;
+//  align-items: center;
+//  margin: 2rem 0 1rem;
+//  gap: 1rem;
+//
+//  h3 {
+//    margin: 0;
+//    font-size: 12pt;
+//    font-weight: bold;
+//    white-space: nowrap;
+//  }
+//
+//  p {
+//    margin: 0 0 0 8px;
+//    color: #858585;
+//    font-size: 0.875rem;
+//    white-space: nowrap;
+//    align-items: center;
+//  }
+//
+//  .medal {
+//    transform: translateY(4px);
+//  }
+//}
+//
+//.mb4 {
+//  margin-bottom: 4px;
+//}
+//
+//.mb80 {
+//  margin-bottom: 80px;
+//}
+//
+//.sub_tit {
+//  margin-bottom: 4px;
+//}
+//
+//.box_flex {
+//  justify-content: space-between;
+//}
+//
+///* page */
+//.lst_line2 {
+//  li {
+//    margin-top: 1.5rem
+//  }
+//
+//  h4 {
+//    letter-spacing: -1px;
+//    color: #73787e;
+//    margin-top: 0;
+//    font-size: 1rem;
+//  }
+//
+//  strong {
+//    width: 100%;
+//    display: block;
+//    text-align: center;
+//    font-size: 0.875rem;
+//    color: #73787E;
+//    font-weight: bold;
+//    padding-bottom: 4px;
+//
+//    &.text-blue {
+//      color: $blue;
+//    }
+//  }
+//
+//  p {
+//    font-size: 0.875rem;
+//    color: #73787E;
+//
+//    span {
+//      font-weight: bold;
+//    }
+//  }
+//
+//  .gap {
+//    gap: 8px;
+//  }
+//
+//  .box_gray {
+//    width: 100%;
+//    padding: 16px;
+//    border-radius: 8px;
+//
+//    .box_tit {
+//      margin-bottom: 8px;
+//    }
+//
+//    .row {
+//      text-align: center;
+//      gap: 8px;
+//      justify-content: center;
+//      flex-wrap: wrap;
+//      align-items: center;
+//    }
+//
+//    .box_white {
+//      border: 1px solid #E9EBED;
+//
+//      img {
+//        width: 20px;
+//      }
+//    }
+//  }
+//
+//  .box_half {
+//    width: 50%;
+//  }
+//
+//  .badge {
+//    margin: 0;
+//  }
+//
+//  .ver_1 {
+//    .row {
+//      justify-content: space-around;
+//    }
+//
+//    .box_white {
+//      height: 70px;
+//      min-width: calc(25% - 8px);
+//    }
+//  }
+//
+//  .arrow_wrap {
+//    .row {
+//      gap: 24px;
+//    }
+//
+//    .box_white {
+//      position: relative;
+//
+//      &::after {
+//        content: url("../../img/math/ic_chevron-right.svg");
+//        position: absolute;
+//        top: 50%;
+//        right: -22px;
+//        transform: translateY(-50%);
+//      }
+//
+//      &:last-child::after {
+//        content: none;
+//      }
+//    }
+//  }
+//}
+//
+//.description {
+//  display: inline-block;
+//  background: #F1F2F2;
+//  font-size: 0.875rem;
+//  color: #73787E;
+//  margin-top: 16px;
+//
+//  span {
+//    font-weight: bold;
+//  }
+//}
+//
+//.tbl_center {
+//  max-width: 65%;
+//  margin: 1rem auto;
+//  text-align: center;
+//
+//  table {
+//    table-layout: fixed;
+//  }
+//}
+//
+//.lst_bygrade table {
+//  border: none;
+//}
+//
+//.lst_bygrade td {
+//  border: none;
+//}
+//
+//.lst_bygrade tr td:first-child {
+//  text-align: left
+//}
+//
+//.lst_bygrade tr td:last-child {
+//  text-align: right;
+//}
+//
+//.card_set {
+//  display: flex;
+//  gap: 16px;
+//  margin-bottom: 40px;
+//
+//  .row_title {
+//    margin: 0 0 1rem;
+//  }
+//
+//  .card_left {
+//    width: 50%;
+//  }
+//
+//  .card_right {
+//    width: 50%;
+//
+//    .row {
+//      .school, .grade {
+//        width: calc(100% / 2);
+//      }
+//    }
+//  }
+//
+//  .row {
+//    gap: 4px;
+//
+//    > div {
+//      width: calc(100% / 3);
+//      text-align: center;
+//
+//      .card_tit {
+//        background: #E9EBED;
+//        font-size: 0.875rem;
+//        padding: 8px;
+//        color: #73787e;
+//        font-weight: bold;
+//      }
+//
+//      .card_txt {
+//        font-size: 12pt;
+//        padding: 8px;
+//        color: #73787e;
+//        border-bottom: 1px solid #E9EBED;
+//      }
+//    }
+//  }
+//
+//  .col {
+//    background-color: #F8F7F6;
+//    border: 1px solid #E8E7E6;
+//    border-radius: 8px;
+//    margin: 0 5px;
+//    padding: 1em;
+//
+//    strong {
+//      font-weight: bold;
+//      display: block;
+//      font-size: 14pt;
+//      margin-top: 0.5rem;
+//    }
+//  }
+//}
+//
+//@each $name, $hexa in $colors {
+//  .badge-#{$name} {
+//    border-radius: 2px;
+//    margin-left: 8px;
+//    font-size: 0.625rem;
+//    padding: 0 4px;
+//    font-weight: bold;
+//    background: white;
+//    border: 1px solid #{$hexa};
+//    color: #{$hexa};
+//  }
+//  .badge-gray {
+//    border-radius: 2px;
+//    margin-left: 8px;
+//    font-size: 0.625rem;
+//    padding: 0 4px;
+//    font-weight: bold;
+//    background: white;
+//    border: 1px solid #9fa4a9;
+//    color: #73787e;
+//  }
+//  .text-#{$name} {
+//    color: #{$hexa};
+//  }
+//  .stick.#{$name} {
+//    span {
+//      color: #{$hexa};
+//      font-weight: bold;
+//      font-size: 12px;
+//      width: 24px;
+//      display: block;
+//      word-break: break-all;
+//      line-height: 1.2;
+//
+//      &.none {
+//        color: $lightgray;
+//      }
+//    }
+//
+//    i {
+//      background-color: #{$hexa};
+//    }
+//  }
+//  .text-#{$name} {
+//    .graph_bar i {
+//      background-color: #{$hexa};
+//    }
+//  }
+//  .month-#{$name} {
+//    position: absolute;
+//    right: 0;
+//    height: 100%;
+//    background: linear-gradient(0deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), #{$hexa};
+//    color: white;
+//    font-size: 0.875rem;
+//    text-align: center;
+//  }
+//}
+//
+//.box_gray {
+//  background-color: #F1F2F2;
+//  border: 1px solid #E9EBED;
+//  justify-content: flex-start;
+//  align-items: center;
+//}
+//
+//.box_white {
+//  background-color: white;
+//  padding: 8px;
+//  border-radius: 4px;
+//  border: 1px solid #f9fbfd;
+//}
+//
+///* table */
+//table {
+//  border-right: 1pt solid #E8E7E6;
+//  border-bottom: 1pt solid #E8E7E6;
+//  width: 100%;
+//  background-color: #fff;
+//}
+//
+//table th {
+//  border-top: 1pt solid #E8E7E6;
+//  border-left: 1pt solid #E8E7E6;
+//  padding: 0.5em 0;
+//  text-align: center;
+//  font-weight: normal;
+//}
+//
+//table tbody th {
+//  width: 20%;
+//}
+//
+//table td {
+//  border-top: 1pt solid #E8E7E6;
+//  border-left: 1pt solid #E8E7E6;
+//  word-break: keep-all;
+//  padding: 0.5em 0;
+//  text-align: center;
+//
+//  .trophy {
+//    font-size: 32px;
+//    font-weight: 300;
+//    line-height: 1.2;
+//  }
+//
+//}
+//
+//.table .bg-light {
+//  background-color: #F8F7F6 !important;
+//}
+//
+//.table tbody th {
+//  background-color: #F8F7F6
+//}
+//
+//.tbl_fixed {
+//  table-layout: fixed;
+//}
+//
+//table .spacer_row td {
+//  padding: 0;
+//  line-height: 0
+//}
+//
+//.graph_left {
+//  width: 40%;
+//}
+//
+//.graph_right {
+//  width: 60%;
+//}
+//
+//.tbl_calendar {
+//  table {
+//    border-collapse: separate;
+//    border-spacing: 5px;
+//    table-layout: fixed;
+//  }
+//
+//  table, th, td {
+//    border: none;
+//  }
+//
+//  th {
+//    padding: 8px;
+//    font-size: 0.875rem;
+//    color: #73787e;
+//    font-weight: bold;
+//    width: 15%;
+//    background: #E9EBED;
+//  }
+//
+//  td {
+//    padding: 0.5em;
+//    height: 70px;
+//    vertical-align: top;
+//    text-align: left;
+//    position: relative;
+//    white-space: nowrap;
+//    border-bottom: 1px solid #E9EBED;
+//  }
+//
+//  em {
+//    color: #858585;
+//    display: block;
+//    line-height: 18px;
+//    margin-bottom: 6px;
+//    text-align: center;
+//    font-size: 0.75rem;
+//  }
+//
+//  strong {
+//    color: #FF7A00;
+//    font-weight: bold;
+//    font-size: 14pt;
+//    display: block;
+//    position: absolute;
+//    top: 8px;
+//    right: 8px;
+//    line-height: 18px;
+//  }
+//
+//  span[class^="badge-"] {
+//    margin: 0 1px;
+//  }
+//}
+//
+//.tbl_by_type {
+//  table {
+//    border-collapse: separate;
+//    border-spacing: 0 2px;
+//    border: none;
+//    text-align: right;
+//  }
+//
+//  tr {
+//    background-color: #F8F7F6
+//  }
+//
+//  th {
+//    border: none;
+//    text-align: left;
+//    font-weight: bold;
+//    padding: 10px 16px;
+//    white-space: nowrap;
+//    color: #353535 !important;
+//  }
+//
+//  td {
+//    border: none;
+//    padding: 10px 16px 10px 0
+//  }
+//}
+//
+//
+///* graph */
+//.color_chip {
+//  width: 16px;
+//  height: 16px;
+//  display: inline-block;
+//  border-radius: 2px;
+//  vertical-align: middle;
+//  margin-right: 0.5em;
+//
+//  &.orange {
+//    background-color: $orange;
+//  }
+//
+//  &.blue {
+//    background-color: $blue;
+//  }
+//
+//  &.gray {
+//    background-color: $gray;
+//  }
+//
+//  &.skyblue {
+//    background-color: $skyblue;
+//  }
+//}
+//
+//.graph_area {
+//  text-align: center;
+//  justify-content: space-around;
+//  margin-bottom: 1rem;
+//
+//  strong {
+//    font-weight: bold;
+//    //color: #73787E;
+//  }
+//}
+//
+//.line_gray {
+//  background: #F7F8F9;
+//  color: #73787E;
+//  font-size: 0.875rem;
+//  padding: 4px 0;
+//}
+//
+//.graph_stick {
+//  width: 80px;
+//  height: 143px;
+//  position: relative;
+//  border-left: 1px solid #C4C4C4;
+//  border-bottom: 1px solid #C4C4C4;
+//  text-align: center;
+//  display: flex;
+//  justify-content: space-around;
+//  align-items: flex-end;
+//  margin: auto;
+//
+//  .stick {
+//    height: 100%;
+//    padding-top: 22px;
+//    display: flex;
+//    flex-direction: column;
+//    justify-content: flex-end;
+//    align-items: center;
+//    position: relative;
+//  }
+//
+//  .stick i {
+//    width: 16px;
+//    display: block;
+//  }
+//}
+//
+//.graph_bar {
+//  display: flex;
+//  justify-content: space-between;
+//  align-items: center;
+//  width: 180px;
+//  margin: auto;
+//
+//  i {
+//    height: 18px;
+//    display: inline-block;
+//  }
+//
+//  span {
+//    margin-left: 0.5rem
+//  }
+//}
+//
+//.graph_left {
+//  width: 40%;
+//}
+//
+//.graph_right {
+//  width: 60%;
+//}
+//
+///* 상세 학습 이력*/
+//.table_detail {
+//  margin-top: 24px;
+//
+//  &.student {
+//    .th p {
+//      font-size: 0.875rem;
+//    }
+//
+//    .td p {
+//      font-size: 1rem;
+//    }
+//  }
+//
+//  li {
+//    display: flex;
+//    align-content: center;
+//    padding: 8px;
+//    font-size: 0.875rem;
+//    text-align: center;
+//    color: #73787e;
+//
+//    > div {
+//      display: flex;
+//      align-items: center;
+//      justify-content: center;
+//      flex-wrap: wrap;
+//      text-align: center;
+//    }
+//
+//    &.th {
+//      background: #E9EBED;
+//
+//      p {
+//        font-weight: bold;
+//      }
+//    }
+//
+//    &.td {
+//      border-bottom: 1px solid #e9ebed;
+//
+//      .title {
+//        text-align: left;
+//        justify-content: left;
+//        padding-left: 16px;
+//
+//        .num {
+//          color: #9FA4A9;
+//        }
+//
+//        .row {
+//          width: 100%;
+//          padding-bottom: 4px;
+//        }
+//
+//        p {
+//          margin: 0;
+//        }
+//      }
+//    }
+//
+//    .date {
+//      width: 15%;
+//    }
+//
+//    .category {
+//      width: 45%;
+//    }
+//
+//    .step {
+//      width: 10%;
+//    }
+//
+//    .name {
+//      width: 20%
+//    }
+//
+//    .school {
+//      width: 30%
+//    }
+//
+//    .grade {
+//      width: 20%
+//    }
+//
+//    .academy {
+//      width: 30%
+//    }
+//  }
+//}
+//
+//
+////학습관리 badge
+//
+//.box_border {
+//  text-align: center;
+//  padding: 16px;
+//  border: 1px solid #E9EBED;
+//  align-items: center;
+//
+//  .badge {
+//    border-radius: 3px;
+//    margin-left: 8px;
+//    font-size: 0.75rem;
+//    padding: 4px 8px;
+//    font-weight: bold;
+//  }
+//
+//  .badge_none {
+//    font-size: 0.875rem;
+//    color: #858585;
+//  }
+//}
+//
+//
+///* 메달 */
+//.medal {
+//  width: 20px;
+//  height: 20px;
+//
+//  &.gold {
+//    content: url('../../img/math/medal_gold.svg');
+//  }
+//
+//  &.silver {
+//    content: url('../../img/math/medal_silver.svg');
+//  }
+//
+//  &.bronze {
+//    content: url('../../img/math/medal_bronze.svg');
+//  }
+//}
+//
+///* 별점 획득 */
+//.table_star {
+//  text-align: center;
+//
+//  ul {
+//    width: 100%;
+//    display: flex;
+//    flex-wrap: wrap;
+//    padding: 20px;
+//    border-radius: 4px;
+//    gap: 8px;
+//
+//    li {
+//      width: 100%;
+//      gap: 16px;
+//      align-items: center;
+//
+//      div {
+//        width: calc(100% / 4);
+//        //display: flex;
+//        text-align: center;
+//        justify-content: center;
+//        gap: 8px;
+//
+//        &.sub_tit {
+//          font-size: 0.875rem;
+//          color: #73787E;
+//          font-weight: bold;
+//        }
+//      }
+//
+//      .result {
+//        border: 1px solid #9FA4A9;
+//
+//        p {
+//          font-weight: bold;
+//        }
+//      }
+//
+//      p {
+//        font-size: 0.875rem;
+//        margin: 0;
+//        color: #73787E;
+//
+//        &.text-blue {
+//          color: $blue;
+//          font-weight: bold;
+//        }
+//
+//        &.text-orange {
+//          color: $orange;
+//          font-weight: bold;
+//        }
+//      }
+//
+//      img {
+//        width: 24px;
+//        height: 24px;
+//      }
+//
+//      &:first-child {
+//        //overflow: hidden;
+//        .box_half {
+//          display: flex;
+//          width: 50%;
+//          flex-direction: row;
+//          gap: 16px;
+//
+//          div {
+//            width: 50%;
+//          }
+//        }
+//
+//        .sub_tit {
+//          height: 100%;
+//          background: #D9E0EA;
+//          padding: 8px;
+//          border-radius: 4px;
+//          margin: 0;
+//        }
+//      }
+//    }
+//  }
+//}
+//
+///*출석 관리*/
+//i {
+//  width: 100%;
+//  height: 100%;
+//  text-align: center;
+//
+//  &.sm {
+//    width: 24px;
+//  }
+//
+//  &.pass {
+//    content: url('../../img/math/pass.svg');
+//  }
+//
+//  &.pass_no {
+//    content: url('../../img/math/nopass.svg');
+//  }
+//}
+//
+///* only screen */
+//@media screen {
+//  body {
+//    background: #e0e0e0;
+//  }
+//  section {
+//    background: white;
+//    box-shadow: 0 .5mm 2mm rgba(0, 0, 0, .3);
+//    margin: 5mm auto;
+//    padding: 4mm;
+//    width: 99%;
+//    max-width: 800px;
+//  }
+//  #footer {
+//    display: none;
+//  }
+//}
+//
+//
+///* for print */
+//@page {
+//  size: A4
+//}
+//
+//@media print {
+//  .graph_area > canvas {
+//    margin: auto;
+//    width: 100%;
+//  }
+//  .only_screen {
+//    display: none;
+//  }
+//  body.A4 {
+//    width: 210mm;
+//    background-color: transparent;
+//  }
+//  /*
+//      body.A4 section { width: 210mm; height: 297mm }
+//      body.A4 article { width: 210mm; height: 295mm; margin: auto; position: inherit; border-bottom:2px solid #ddd; background-color: transparent}
+//      #footer {position: fixed; right: 0; bottom:0px; color: #999; font-size: 0.8em}
+//      #footer img {vertical-align: bottom; margin-left:5px}
+//  */
+//}
+//
+//@media print {
+//  section {
+//    page-break-inside: auto;
+//  }
+//  table {
+//    page-break-after: auto;
+//  }
+//  tr {
+//    break-after: auto;
+//    page-break-inside: avoid;
+//    //page-break-after: always
+//  }
+//  td {
+//    page-break-inside: avoid;
+//    page-break-after: auto
+//  }
+//  thead {
+//    display: table-header-group
+//  }
+//  tfoot {
+//    display: table-footer-group
+//  }
+//}
+//
+//
+//.progress_wrap {
+//  background: #f1f2f2;
+//  padding: 16px;
+//  margin-top: 40px;
+//  border-radius: 4px;
+//
+//  &.ver2 {
+//    .progress {
+//      width: 63%;
+//    }
+//
+//    .month_add {
+//      width: 5%;
+//      height: 32px;
+//      display: flex;
+//      align-items: center;
+//      justify-content: center;
+//      background: #F1F2F2;
+//      border: 1px solid #9FA4A9;
+//      border-radius: 2px;
+//      color: #73787E;
+//      font-size: 0.875rem;
+//      padding: 0 10px;
+//    }
+//  }
+//
+//  .row_title {
+//    margin-top: 0;
+//    justify-content: space-between;
+//
+//    p {
+//      color: #26282b;
+//
+//      span {
+//        font-weight: bold;
+//      }
+//    }
+//  }
+//
+//  .box_white {
+//    margin-bottom: 16px;
+//    gap: 8px;
+//    align-items: center;
+//
+//    &:last-child {
+//      margin-bottom: 0;
+//    }
+//  }
+//
+//  .progress_tit {
+//    width: 15%;
+//    text-align: left;
+//    font-size: 0.875rem;
+//    font-weight: bold;
+//  }
+//
+//  .per {
+//    width: 7%;
+//    font-size: 0.875rem;
+//    font-weight: bold;
+//  }
+//
+//  .progress {
+//    display: flex;
+//    width: 68%;
+//    height: 32px;
+//    border: 1px solid #E9EBED;
+//    border-radius: 2px;
+//    padding: 4px;
+//    box-sizing: border-box;
+//    overflow: hidden;
+//
+//    .bar {
+//      position: relative;
+//      width: 100%;
+//      background: $blue;
+//
+//      &.blue {
+//        background: $blue;
+//      }
+//
+//      &.pink {
+//        background: $pink;
+//      }
+//
+//      &.purple {
+//        background: $purple;
+//      }
+//
+//      &.orange {
+//        background: $orange;
+//      }
+//
+//      &.green {
+//        background: $green;
+//      }
+//    }
+//
+//    p {
+//      text-align: center;
+//      color: #73787E;
+//      font-size: 0.75rem;
+//    }
+//  }
+//
+//  .text {
+//    text-align: center;
+//    width: 10%;
+//    color: #73787E;
+//
+//    span {
+//      font-size: 0.875rem
+//    }
+//  }
+//}
+//
+//
+//

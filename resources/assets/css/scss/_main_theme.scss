@@ -1,0 +1,447 @@
+//메인 테마
+%hills {
+  content: '';
+  width: 100%;
+  max-width: 503px;
+  height: 200px;
+  position: absolute;
+  bottom: 219px;
+  background: {
+    repeat: no-repeat;
+    size: contain;
+    position: bottom;
+  };
+}
+
+.main {
+  background: {
+    blend-mode: overlay;
+    repeat: no-repeat;
+    position: center;
+    size: cover;
+    image: url("../../img/math/bg_main_stars.svg"), linear-gradient(0deg, rgba(0, 0, 0, 0) 44.54%, #000000 93.72%);
+  };
+
+  .main__body {
+    position: relative;
+    flex: none;
+    height: 100%;
+
+    .main__hills {
+      margin-top: auto;
+    }
+  }
+
+  .main__head{
+    margin: 1rem;
+  }
+
+  .main__hills {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    background: {
+      color: #006E5F;
+    };
+    &::before {
+      @extend %hills;
+      left: 0;
+    }
+    &::after {
+      @extend %hills;
+      right: 0;
+      transform: scaleX(-1);
+    }
+  }
+}
+
+.object--alien {
+  z-index: 2;
+  position: absolute;
+  left: 50%;
+  bottom: 120px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 15vw;
+
+  .bubble {
+    position: relative;
+    width: 320px;
+    background-color: $white;
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: 4px;
+    box-shadow: 0px 8px 20px 0px #0000001A;
+    word-break: keep-all;
+
+    &::before {
+      content: '▼';
+      position: absolute;
+      bottom: -1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: $white;
+    }
+  }
+}
+
+.alien {
+  display: block;
+  width: 100%;
+  max-width: 240px;
+  height: 240px;
+  background: {
+    repeat: no-repeat;
+    size: contain;
+    position: bottom;
+  };
+}
+
+.main__sky {
+  top: 0;
+}
+
+.main__sky__inner {
+  display: flex;
+  justify-content: center;
+  gap: 5vw;
+  width: 100%;
+}
+.main__hills__inner {
+  z-index: 1;
+  position: absolute;
+  bottom: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 5vw;
+  width: 100%;
+}
+
+.main__objects {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  div[class ^="object"] {
+    position: relative;
+    display: block;
+
+    i {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: var(--w);
+      height: 100%;
+      background: {
+        repeat: no-repeat;
+        size: cover;
+      };
+    }
+
+    &::before {
+      content: '';
+      display: block;
+      width: initial;
+      height: fill-available;
+      height: -moz-available;          /* WebKit-based browsers will ignore this. */
+      height: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+      background-repeat: no-repeat;
+      background-size: cover;
+      filter: grayscale(0) brightness(0) opacity(0.04);
+    }
+  }
+
+  .object--1 {
+    width: 30vw;
+    max-width: 640px;
+    height: 30vw;
+    max-height: 640px;
+    background-position: center bottom;
+  }
+
+  .object--2 {
+    width: 20vw;
+    max-width: 480px;
+    height: 20vw;
+    max-height: 480px;
+    background-position: right bottom;
+  }
+
+  .object--3 {
+    width: 20vw;
+    max-width: 480px;
+    height: 20vw;
+    max-height: 480px;
+    background-position: left bottom;
+  }
+
+  .object--4 {
+    width: 20vw;
+    max-width: 320px;
+    height: 20vw;
+    max-height: 320px;
+    background-position: center top;
+  }
+
+  .object--5 {
+    width: 20vw;
+    max-width: 320px;
+    height: 20vw;
+    max-height: 320px;
+    background-position: right top;
+  }
+
+  .object--6 {
+    width: 20vw;
+    max-width: 320px;
+    height: 20vw;
+    max-height: 320px;
+    background-position: left top;
+  }
+}
+
+//테마 3-1
+.main.theme--3-1 {
+  background: {
+    color: #C5F7FF;
+  };
+  .alien {
+    background-image: url("../../img/main/3-1/alien_3-1.svg");
+  }
+
+  .main__hills {
+    background: {
+      color: #B0EEFF;
+    };
+    &::before, &::after {
+      background-image: url("../../img/main/3-1/bottom_3-1.svg");
+    }
+  }
+
+  @for $i from 1 through 6 {
+    .object--#{$i} {
+      i {
+        background-image: url("../../img/main/3-1/object_3-1-#{$i}.svg");
+      }
+      &::before {
+        background-image: url("../../img/main/3-1/object_3-1-#{$i}.svg");
+      }
+    }
+  }
+}
+
+//테마 3-2
+.main.theme--3-2 {
+  background: {
+    color: #CEF4CE;
+  };
+
+  .alien {
+    background-image: url("../../img/main/3-2/alien_3-2.svg");
+  }
+
+  .main__hills {
+    background: {
+      color: #BDEFBD;
+    };
+    &::before, &::after {
+      background-image: url("../../img/main/3-2/bottom_3-2.svg");
+    }
+  }
+  @for $i from 1 through 6 {
+    .object--#{$i} {
+      i {
+        background-image: url("../../img/main/3-2/object_3-2-#{$i}.svg");
+      }
+      &::before {
+        background-image: url("../../img/main/3-2/object_3-2-#{$i}.svg");
+      }
+    }
+  }
+}
+
+//테마 4-1
+.main.theme--4-1 {
+  background: {
+    color: #E5DCFF;
+  };
+
+  .alien {
+    background-image: url("../../img/main/4-1/alien_4-1.svg");
+  }
+
+  .main__hills {
+    background: {
+      color: #BBABFF;
+    };
+    &::before, &::after {
+      background-image: url("../../img/main/4-1/bottom_4-1.svg");
+    }
+  }
+  @for $i from 1 through 6 {
+    .object--#{$i} {
+      i {
+        background-image: url("../../img/main/4-1/object_4-1-#{$i}.svg");
+      }
+      &::before {
+        background-image: url("../../img/main/4-1/object_4-1-#{$i}.svg");
+      }
+    }
+  }
+}
+
+//테마 4-2
+.main.theme--4-2 {
+  background: {
+    color: #BDE9FF;
+  };
+
+  .alien {
+    background-image: url("../../img/main/4-2/alien_4-2.svg");
+  }
+
+  .main__hills {
+    background: {
+      color: #85E0D0;
+    };
+    &::before, &::after {
+      background-image: url("../../img/main/4-2/bottom_4-2.svg");
+    }
+  }
+  @for $i from 1 through 6 {
+    .object--#{$i} {
+      i {
+        background-image: url("../../img/main/4-2/object_4-2-#{$i}.svg");
+      }
+      &::before {
+        background-image: url("../../img/main/4-2/object_4-2-#{$i}.svg");
+      }
+    }
+  }
+}
+
+//테마 5-1
+.main.theme--5-1 {
+  background: {
+    color: #FFDAA9
+  };
+
+  .alien {
+    background-image: url("../../img/main/5-1/alien_5-1.svg");
+  }
+
+  .main__hills {
+    background: {
+      color: #FFBA5F;
+    };
+    &::before, &::after {
+      background-image: url("../../img/main/5-1/bottom_5-1.svg");
+    }
+  }
+  @for $i from 1 through 6 {
+    .object--#{$i} {
+      i {
+        background-image: url("../../img/main/5-1/object_5-1-#{$i}.svg");
+      }
+      &::before {
+        background-image: url("../../img/main/5-1/object_5-1-#{$i}.svg");
+      }
+    }
+  }
+}
+
+//테마 5-2
+.main.theme--5-2 {
+  background: {
+    color: #E4E8EF;
+  };
+
+  .alien {
+    background-image: url("../../img/main/5-2/alien_5-2.svg");
+  }
+
+  .main__hills {
+    background: {
+      color: #CED7DD;
+    };
+    &::before, &::after {
+      background-image: url("../../img/main/5-2/bottom_5-2.svg");
+    }
+  }
+  @for $i from 1 through 6 {
+    .object--#{$i} {
+      i {
+        background-image: url("../../img/main/5-2/object_5-2-#{$i}.svg");
+      }
+      &::before {
+        background-image: url("../../img/main/5-2/object_5-2-#{$i}.svg");
+      }
+    }
+  }
+}
+
+//테마 6-1
+.main.theme--6-1 {
+  background: {
+    color: #BBDAFF;
+  };
+
+  .alien {
+    background-image: url("../../img/main/6-1/alien_6-1.svg");
+  }
+
+  .main__hills {
+    background: {
+      color: #97C8F7;
+    };
+    &::before, &::after {
+      background-image: url("../../img/main/6-1/bottom_6-1.svg");
+    }
+  }
+  @for $i from 1 through 6 {
+    .object--#{$i} {
+      i {
+        background-image: url("../../img/main/6-1/object_6-1-#{$i}.svg");
+      }
+      &::before {
+        background-image: url("../../img/main/6-1/object_6-1-#{$i}.svg");
+      }
+    }
+  }
+}
+
+//테마 6-2
+.main.theme--6-2 {
+  background: {
+    color: #FFDEE3;
+  };
+
+  .alien {
+    background-image: url("../../img/main/6-2/alien_6-2.svg");
+  }
+
+  .main__hills {
+    background: {
+      color: #FFC2D9;
+    };
+    &::before, &::after {
+      background-image: url("../../img/main/6-2/bottom_6-2.svg");
+    }
+  }
+  @for $i from 1 through 6 {
+    .object--#{$i} {
+      i {
+        background-image: url("../../img/main/6-2/object_6-2-#{$i}.svg");
+      }
+      &::before {
+        background-image: url("../../img/main/6-2/object_6-2-#{$i}.svg");
+      }
+    }
+  }
+}

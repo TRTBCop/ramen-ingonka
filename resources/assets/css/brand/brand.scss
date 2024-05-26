@@ -1,0 +1,103 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Noto+Serif+KR:wght@400;700&display=swap');
+html {
+  font-size: 16px;
+}
+
+// layout
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Noto Sans KR', 'Malgun Gothic', '맑은 고딕', sans-serif;
+  letter-spacing: -0.05em;
+  color: #222;
+  line-height: 1.5;
+  user-select: none;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+em {
+  font-style: normal;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+ol, ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#wrap {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.row {
+  display: flex;
+}
+
+.is_full {
+  flex: none;
+  width: 100% !important;
+}
+
+
+// breakpoints
+$breakpoint-tablet: 1200px;
+$breakpoint-mobile: 768px;
+
+
+@mixin mini {
+  @media (max-width: #{$breakpoint-mobile}) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: #{$breakpoint-tablet}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$breakpoint-tablet}) {
+    @content;
+  }
+}
+
+// import
+@import "reset", "color", "typography", "button","layout";
+@import "page";

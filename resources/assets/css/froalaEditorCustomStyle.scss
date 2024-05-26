@@ -1,0 +1,37 @@
+td {
+    &.border-top-none {
+        border-top: none !important;
+    }
+
+    &.border-bottom-none {
+        border-bottom: none  !important;
+    }
+
+    &.border-left-none {
+        border-left: none  !important;
+    }
+
+    &.border-right-none {
+        border-right: none  !important;
+    }
+
+    &.border-black {
+        border-color:  #111 !important;
+    }
+
+    &.border-red {
+        border-color:  #FF525D !important;
+    }
+
+    &.border-blue {
+        border-color:  #008CFF !important;
+    }
+
+    &.border-green {
+        border-color:  #05B64D !important;
+    }
+
+    &.border-yellow {
+        border-color:  #FFC148 !important;
+    }
+}

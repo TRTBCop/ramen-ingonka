@@ -1,0 +1,109 @@
+// reset
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+  overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+p {
+  margin: 0;
+}
+
+em {
+  font-style: normal;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th, td {
+    border: 1px solid #ddd;
+  }
+}
+
+ol, ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+input[type=radio],
+input[type=checkbox] {
+  width: 1.25rem;
+  height: 1.25rem;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -o-appearance: none;
+  outline: none;
+  content: none;
+  margin: 0;
+
+  &:before {
+    content: '';
+    display: block;
+    width: 1.25rem;
+    height: 1.25rem;
+    background: {
+      image: url("../../img/math/ico_checkbox.svg");
+      size: contain;
+    };
+  }
+}
+
+input[type=radio]:checked:before,
+input[type=checkbox]:checked:before, {
+  content: '';
+  background: {
+    image: url("../../img/math/ico_checkbox_on.svg");
+    size: contain;
+  };
+}
+
+/* component */
+.pb-0 {
+  padding-bottom: 0 !important;
+}
+.only_pc {
+  @include mobile  {
+    display: none;
+  }
+}

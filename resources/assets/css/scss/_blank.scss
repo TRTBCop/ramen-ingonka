@@ -1,0 +1,424 @@
+//빈칸 공통
+%blank {
+  position: relative;
+  border: {
+    width: 2px !important;
+    style: solid;
+    color: $gray--lighter
+  }
+  color: transparent;
+  text-align: center;
+  cursor: pointer;
+  overflow: hidden;
+  background-color: $white;
+  font-weight: normal;
+  padding: 0.25rem 0.5rem;
+
+  img[alt='수식 이미지'] {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    opacity: 0.3;
+  }
+}
+
+//문제푸는 영역 공통
+.blanks,
+span[class^="blanks__"] {
+  font-size: $size6;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  line-height: 1;
+}
+
+.blank {
+  @extend %blank;
+  min-width: 50px;
+  min-height: 2.5rem;  
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  direction: rtl;
+  margin: 0 0.25rem;
+  border-radius: 0.25em;  
+  
+  * {
+    vertical-align: middle;
+  }
+
+  &.blank__focus {
+    border-color: $yellow--secondary;
+  }
+
+  &.blank__correct {
+    max-width: 100%;
+    @include border($green--secondary,$green--light);
+
+    &::after {
+      background: {
+        image: url("../../img/math/ico_correct.svg");
+      }
+    }
+  }
+
+  &.blank__wrong {
+    max-width: 100%;
+    @include border($purple--secondary,$purple--light);
+
+    &::after {
+      background: {
+        image: url("../../img/math/ico_wrong.svg");
+      }
+    }
+  }
+
+  &.blank__wrong__check {
+    max-width: 100%;
+    @include border($green--secondary,$green--light);
+
+    &::after {
+      background: {
+        image: url("../../img/math/ico_check.svg");
+      }
+    }
+  }
+
+  &.blank__on {
+    color: $darker !important;
+    font-weight: normal;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+}
+
+// blank 길이, 분수 , 타입
+@for $i from 1 through 6 {
+  .blanks__type#{$i} .blank {
+    width: 3rem * $i;
+    margin: 0 0.25rem;
+  }
+
+  .question_area {
+    .blanks__type#{$i}.improper {
+      width: (3rem * $i)  * 2 + 1rem;
+      color: black;
+      font-size: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      padding-left: 3rem * $i;
+      overflow-wrap: anywhere;
+    }
+  }
+
+  // for fraction 분수
+  %fraction {
+    display: inline-flex !important;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0.5rem 0.25rem;
+
+
+    .blank:last-child {
+      order: 3;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      border-top: 1px solid black;
+      margin: 0 auto;
+    }
+  }
+
+  .blanks__type4 {
+    img {
+      max-width: 100%;
+    }
+  }
+
+  .proper {
+    @extend %fraction;
+
+    &::after {
+      width: 100%;
+      right: 0;
+    }
+  }
+
+  // mixed number 대분수
+  .improper {
+    @extend %fraction;
+
+    em.blank:first-child {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+
+    &::after {
+      width: calc(100% / 2 - 4px);
+      right: 6px;
+    }
+
+  }
+
+  .toggle_area {
+    .improper em.blank:first-child {
+      left: 20px;
+    }
+
+    .improper::after {
+      width: 3rem;
+      right: auto;
+    }
+
+    .proper::after {
+      right: 50%;
+      transform: translateX(54%);
+    }
+
+    .blanks__type1.proper::after {
+      width: 3rem;
+    }
+
+    .blanks__type2.proper::after {
+      width: 6rem;
+    }
+
+    .blanks__type3.proper::after {
+      width: 9rem;
+    }
+  }
+
+  //문제
+  //.question_area {
+  //  p {
+  //    line-height: 3;
+  //
+  //    .blank {
+  //      font-size: $size6;
+  //      display: inline-block;
+  //      vertical-align: middle;
+  //      line-height: 1;
+  //    }
+  //  }
+  //
+  //  table {
+  //    margin-top: 1rem;
+  //  }
+  //
+  //  p {
+  //    display: block;
+  //  }
+  //}
+}
+
+//서술형 순서 맞추기
+.order__blank {
+  @extend %blank;
+  min-width: 120px;
+  min-height: 54px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 4px 4px;
+  white-space: nowrap;
+  transition: all 0.75s ease;
+  border-radius: 0.5rem;
+}
+
+.order__blank__focus,
+.order__blank__on,
+.order__blank__done {
+  @extend .order__blank;
+  color: $darker;
+  img,
+  svg {
+    opacity: 1;
+    max-width: 100%;
+  }  
+}
+
+.order__blank__focus {
+  border-color: $yellow--secondary;
+}
+
+//.order__blank__on {
+//  max-width: 100%;
+//  width: fit-content;
+//  border-width: 2px;
+//  border-color: $gray--lighter;
+//}
+
+.order__blank__on {
+  box-shadow: inset 0 -4px $gray--lighter;
+  border-radius: 0.5rem;
+  background-color: white;
+  color: $gray;
+}
+
+
+//.order__blank__correct {
+//  @include border($green--secondary,$green--light);
+//  max-width: 100%;
+//  color: $darker;
+//
+//  &::after {
+//    background: {
+//      image: url("../../img/math/ico_correct.svg");
+//    }
+//  }
+//}
+//
+//.order__blank__wrong {
+//  max-width: 100%;
+//  background-color: $purple--light;
+//  border-color: $purple--secondary;
+//  color: $darker;
+//
+//  &::after {
+//    background: {
+//      image: url("../../img/math/ico_wrong.svg");
+//    }
+//  }
+//}
+//
+//.order__blank__wrong__check {
+//  @include border($green--secondary,$green--light);
+//  max-width: 100%;
+//  color: $darker;
+//
+//  &::after {
+//    background: {
+//      image: url("../../img/math/ico_check.svg");
+//    }
+//  }
+//}
+
+
+.order__blank__correct {
+  @include border($green--secondary,$green--light);
+  box-shadow: inset 0 -4px $green--secondary;
+  pointer-events: none;
+  &::after {
+    background: {
+      image: url("../../img/math/ico_correct.svg");
+    }
+  }
+}
+
+.order__blank__wrong {
+  @include border($purple--secondary, $purple--light);
+  box-shadow: inset 0 -4px $purple--secondary;
+  pointer-events: none;
+  &::after {
+    background: {
+      image: url("../../img/math/ico_wrong.svg");
+    }
+  }
+}
+
+.order__blank__wrong__check {
+  @include border($green--secondary,$green--light);
+  box-shadow: inset 0 -4px $green--secondary;
+  pointer-events: none;
+  &::after {
+    background: {
+      image: url("../../img/math/ico_check.svg");
+    }
+  }
+}
+
+// 순서 맞추기: 버튼
+.order__btns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 1rem;
+  gap: 1rem;
+
+  button {
+    position: relative;
+    min-width: 80px;
+    min-height: 54px;
+    @extend %btn;
+    border: {
+      width: 2px !important;
+      style: solid;
+      color: $gray--lighter
+    }
+    box-shadow: inset 0 -4px $gray--lighter;
+    border-radius: 0.5rem;
+    padding: 1rem 1rem 1.25rem 1rem;
+    background-color: white;
+    color: $gray;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1.5rem;
+      height: 1.5rem;
+      opacity: 0.3;
+    }
+
+    &:active {
+      box-shadow: inset 0 4px $gray--lighter;
+      background-color: $gray--lightest;
+      padding: 1.25rem 1rem 1rem 1rem;
+    }
+
+    &:disabled {
+      background-color: $gray;
+      opacity: 0.1;
+    }
+
+    &.order__btn__correct {
+      @include border($green--secondary,$green--light);
+      box-shadow: inset 0 -4px $green--secondary;
+      pointer-events: none;
+      &::after {
+        background: {
+          image: url("../../img/math/ico_correct.svg");
+        }
+      }
+    }
+
+    &.order__btn__wrong {
+      @include border($purple--secondary, $purple--light);
+      box-shadow: inset 0 -4px $purple--secondary;
+      pointer-events: none;
+      &::after {
+        background: {
+          image: url("../../img/math/ico_wrong.svg");
+        }
+      }
+    }
+    &.order__btn__wrong__check {
+      @include border($green--secondary,$green--light);
+      box-shadow: inset 0 -4px $green--secondary;
+      pointer-events: none;
+      &::after {
+        background: {
+          image: url("../../img/math/ico_check.svg");
+        }
+      }
+    }
+  }
+}
+
+

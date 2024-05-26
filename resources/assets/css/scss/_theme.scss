@@ -1,0 +1,345 @@
+//학습 테마
+.training__theme {
+  height: calc(100vh - 2.5rem);
+  height: calc(100dvh - 2.5rem);
+  display: flex;
+  flex-direction: column;
+
+  .grid {
+    flex: 1;
+  }
+
+  &.theme--textbook {
+    background-color: $blue--light;
+
+    .grid, .frame__bottom {
+      background-color: $blue--light;
+    }
+
+    .character {
+      background: {
+        image: url("../../img/math/bg_textbook.svg");
+      };
+    }
+
+    .result__tip {
+      border: 2px solid $blue--secondary;
+
+      .result--character {
+        background: {
+          image: url("../../img/math/result_textbook.svg");
+        };
+      }
+    }
+  }
+
+  &.theme--question {
+    background-color: $green--light;
+
+    .grid, .frame__bottom {
+      background-color: $green--light;
+    }
+
+    .character {
+      background: {
+        image: url("../../img/math/bg_question.svg");
+      };
+    }
+
+    .result__tip {
+      border: 2px solid $green--secondary;
+
+      .result--character {
+        background: {
+          image: url("../../img/math/result_question.svg");
+        };
+      }
+    }
+  }
+
+  &.theme--descriptive {
+    background-color: $purple--light;
+
+    .grid, .frame__bottom {
+      background-color: $purple--light;
+    }
+
+    .character {
+      background: {
+        image: url("../../img/math/bg_descriptive.svg");
+      };
+    }
+
+    .result__tip {
+      border: 2px solid $purple--secondary;
+
+      .result--character {
+        background: {
+          image: url("../../img/math/result_descriptive.svg");
+        };
+      }
+    }
+  }
+
+  &.theme--pretest {
+    background-color: $gray--lightest;
+
+    .grid, .frame__bottom {
+      background-color: $gray--lightest;
+    }
+
+    .frame__bottom {
+      .character {
+        background: {
+          image: url("../../img/math/bg_pretest.svg");
+        };
+      }
+      .comment {
+        display: none;
+      }
+    }
+  }
+
+  &.theme--pretestIntro {
+    background-color: $gray--lightest;
+    .result__box {
+      text-align: left;
+      ul {
+        width: 100%;
+      }
+      li {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px dashed $gray--light;
+        padding-bottom: 1rem;
+        color: $gray--light;
+
+        &:last-child {
+          border: 0;
+          margin: 0;
+          padding: 0;
+        }
+
+        div {
+          width: calc(100% - 2.5rem);
+        }
+        p {
+          display: flex;
+          justify-content: space-between;
+        }
+        svg {
+          width: 1.5rem;
+          font-size: $size3;
+          margin-left: 0.5rem;
+        }
+      }
+    }
+    .col {
+      color: $gray;
+      text-align: center;
+      .frame__head.title_area {
+        border: 0;
+      }
+      img {
+        width: 108px;
+        object-fit: contain;
+      }
+
+      .frame__body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .frame__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        width: 480px;
+      }
+
+      .frame__box {
+        @extend %box;
+        text-align: left;
+        dt {
+          font-weight: bold;
+        }
+        dd {
+          margin: 0 0 1rem 0;
+          border-bottom: 1px dashed $gray--light;
+          padding-bottom: 1rem;
+          &:last-child {
+            border: 0;
+            margin: 0;
+            padding: 0;
+          }
+        }
+      }
+    }
+
+   .grid, .frame__bottom {
+      background-color: $gray--lightest;
+    }
+    .frame__bottom {
+      display: none;
+
+      .character {
+        background: {
+          image: url("../../img/math/bg_pretest.svg");
+        };
+      }
+    }
+  }
+}
+
+.main.main_training {
+  background-color: transparent !important;
+  &.theme--textbook {
+    background: {
+      image: url("../../img/math/bg_training_sky.svg"), linear-gradient(0deg, #043D84 0%, #021A38 100%);
+    };
+  }
+
+  &.theme--question {
+    background: {
+      image: url("../../img/math/bg_training_sky.svg"), linear-gradient(0deg, #0C5542 0%, #021A38 100%);
+    };
+  }
+
+  &.theme--descriptive {
+    background: {
+      image: url("../../img/math/bg_training_sky.svg"), linear-gradient(0deg, #302186 0%, #021A38 100%);
+    };
+  }
+}
+
+//결과 인트로페이지
+.result__intro {
+  height: calc(100vh - 2.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-y: hidden;
+
+  .result__title {
+    height: calc(100% - 240px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    text-align: center;
+    animation: {
+      name: slide_up2;
+      duration: 2s;
+      fill-mode: forwards;
+      timing-function: ease;
+    };
+
+    h3 {
+      font-size: $size3;
+      color: $gray;
+    }
+    p {
+      font-size: $size3;
+      color: $gray;
+    }
+  }
+
+  .result__character {
+    width: 100%;
+    height: 240px;
+    position: relative;
+    margin-top: auto;
+
+    &::before {
+      content: 'CLEAR';
+      position: absolute;
+      bottom: 180px;
+      left: 50%;
+      height: 200px;
+      transform: translateX(-50%);
+      font-size: 300px;
+      pointer-events: none;
+      @extend %dongle;
+    }
+
+    %character {
+      display: block;
+      height: 100%;
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      background: {
+        size: cover;
+      };
+    }
+
+    .character__face {
+      @extend %character;
+      width: 320px;
+      height: 240px;
+      animation: {
+        name: character_up;
+        duration: 1s;
+        fill-mode: forwards;
+        timing-function: ease;
+      };
+    }
+
+    .character__hand {
+      width: 284px;
+      height: 56px;
+      @extend %character;
+    }
+  }
+}
+
+$textbook : $blue;
+$question : $green;
+$descriptive : $purple;
+//결과페이지 테마
+.theme--textbook {
+  .result__character {
+    &::before {
+      color: rgba($textbook, 0.1);
+    }
+    .character__face {
+      background-image: url("../../img/math/head_textbook.svg");
+    }
+    .character__hand {
+      background-image: url("../../img/math/hand_textbook.svg");
+    }
+  }
+}
+.theme--question {
+  .result__character {
+    &::before {
+      color: rgba($question, 0.1);
+    }
+    .character__face {
+      background-image: url("../../img/math/head_question.svg");
+    }
+    .character__hand {
+      background-image: url("../../img/math/hand_question.svg");
+    }
+  }
+}
+.theme--descriptive {
+  .result__character {
+    &::before {
+      color: rgba($descriptive, 0.1);
+    }
+    .character__face {
+      background-image: url("../../img/math/head_descriptive.svg");
+    }
+    .character__hand {
+      background-image: url("../../img/math/hand_descriptive.svg");
+    }
+  }
+}

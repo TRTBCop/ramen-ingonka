@@ -1,0 +1,183 @@
+@charset "utf-8";
+// reset
+*,
+::after,
+::before {
+  box-sizing: border-box;
+  print-color-adjust: exact;
+}
+
+dl,
+dt,
+dd {margin: 0; padding: 0}
+
+@mixin is_serif {font-family: 'Noto Serif KR', serif;}
+
+@mixin is_sans {font-family: "Noto Sans KR", "Malgun Gothic", "맑은 고딕", sans-serif}
+
+html {font-size: 14pt;}
+
+body {
+  min-width: unset;
+  counter-reset: page;
+  page: main;
+  display: block;
+  font-size: 14pt;
+  @include is_sans;
+}
+
+section {
+  background: white;
+  margin: 5mm auto;
+  width: 99%;
+  max-width: 800px;
+  page-break-after: always;
+  position: relative;
+}
+
+article {
+  display: block;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  background: none;
+}
+
+img {
+  display: inline-block;
+  max-width: 100%;
+  page-break-before: left;
+  page-break-inside: auto;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+i,
+em {
+  font-style: normal;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+ol, ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+
+// common
+@mixin column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hide {display: none !important;}
+
+.avoid_break {
+  page-break-inside: avoid;
+  break-inside: avoid-page;
+}
+
+.fw_bold {font-weight: bold;}
+
+.fw_bold {font-weight: bold}
+
+// column widths
+@for $i from 1 through 20 {
+  .cw_#{$i*5} {
+    width: $i * 5%;
+  }
+}
+
+/* 인쇄하기 버튼 */
+.only_screen {
+  padding: 1rem;
+}
+
+.only_screen .btn {
+  padding: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.only_screen .btn:hover {
+  opacity: 1;
+}
+
+/* for screen */
+@media screen {
+  body {
+    background: #e0e0e0;
+  }
+  section {
+    background: white;
+    box-shadow: 0 .5mm 2mm rgba(0, 0, 0, .3);
+    margin: 5mm auto;
+    padding: 4mm;
+    width: 99%;
+    max-width: 800px;
+  }
+  table {
+    width: 100%;
+  }
+  table th,
+  table td {
+    page-break-inside: avoid;
+  }
+  tr td {
+    page-break-inside: avoid;
+  }
+  #footer {
+    display: none;
+  }
+}
+
+/* for print */
+@media print {
+  .only_screen {
+    display: none;
+  }
+  body.A4 {
+    width: 210mm;
+    background-color: transparent;
+  }
+  body.A4 section {
+    width: 210mm;
+  }
+  body.A4 article {
+    width: 210mm;
+    min-height: 295mm;
+    margin: auto;
+    position: inherit;
+    background-color: transparent;
+  }
+  #pageborder {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 10mm;
+  }
+}

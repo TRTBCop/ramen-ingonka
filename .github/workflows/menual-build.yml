@@ -1,0 +1,82 @@
+name: 메뉴얼 빌드
+
+on:
+  workflow_dispatch:
+    inputs:        
+      env:
+        description: |
+          배포 환경
+        required: true
+        type: choice
+        options:
+          - production
+          - test
+        default: 'test'
+
+      branch:
+        description: '브랜치명을 입력해주세요'
+        required: true
+        default: 'main'
+
+      script:
+        description: '스크립트 ex(php artisan script scriptFile)'
+        default: ''
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ap-northeast-2
+
+    - name: get GitHub IP
+      id: ip
+      uses: haythem/public-ip@v1.2
+
+    - name: Add IP to security group
+      run: |
+        aws ec2 authorize-security-group-ingress --group-id ${{ secrets.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+
+    - name: 서버접속
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.REAL_SERVER_HOST }}
+        username: ec2-user
+        key: ${{ secrets.PRIVATE_KEY }}
+        timeout: 60s
+        port: 22
+        script: |
+          if [ "${{ github.event.inputs.env }}" = 'production' ]; then
+            cd reading-math
+          elif [ "${{ github.event.inputs.env }}" = 'test' ]; then
+            cd test-reading-math
+          else
+            cd test-reading-math
+          fi          
+          
+          git fetch origin
+          git checkout ${{ github.event.inputs.branch }}
+          git pull
+          
+          composer install --no-interaction --prefer-dist --no-dev
+          
+          yarn install
+          
+          yarn build
+          
+          php artisan migrate --force
+          
+          if [ -n "${{ github.event.inputs.script }}" ]; then
+            echo 'script 실행'
+            ${{ github.event.inputs.script }}
+          fi
+
+    - name: Remove IP from security group
+      if: always()
+      run: |
+        aws ec2 revoke-security-group-ingress --group-id ${{ secrets.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32

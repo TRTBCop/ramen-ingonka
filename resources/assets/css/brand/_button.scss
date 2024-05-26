@@ -1,0 +1,127 @@
+button:disabled {
+  cursor: default !important;
+  pointer-events: none;
+}
+
+button {
+  background-color: transparent;
+  color: $gray;
+}
+
+button:disabled {
+  cursor: none;
+  opacity: 0.3;
+}
+
+.btns {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem 0;
+
+  &.btns--left {
+    justify-content: flex-start;
+  }
+  &.btns--right {
+    justify-content: flex-end;
+  }
+
+}
+
+%btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  height: 40px;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-size: $size5;
+  text-align: center;
+  color: white;
+  white-space: nowrap;
+  svg {
+    margin-right: 0.5rem;
+  }
+}
+
+/* learn button */
+@each $name, $color in $colors {
+  .btn--#{"" + $name} {
+    @extend %btn;
+    border-color: #{$color};
+    background-color: #{$color};
+
+    &:hover {
+      background-color: darken($color, 10%);
+    }
+
+    &:focus {
+      background-color: darken($color, 10%);
+    }
+
+    &:active {
+      background-color: darken($color, 20%);
+    }
+
+    &:disabled {
+      //background-color: lighten($color, 30%);
+    }
+  }
+}
+
+.btn--lg {
+  width: 160px;
+}
+
+.btn--full {
+  width: 100%;
+}
+
+.btn--sub {
+  @extend %btn;
+  color: $brand;
+  background-color: $bg--brand;
+}
+
+.btn--white {
+  width: 100%;
+  border: 1px solid $gray__lighter;
+  color: $gray;
+}
+
+.btn--back {
+  max-width: 120px;
+  display: inline-block;
+  padding: 0.5rem 0;
+  svg {
+    margin-right: 0.5rem;
+  }
+}
+
+.btns_font {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 4rem;
+  left: 0;
+  background-color: white;
+}
+
+.btn_dropdown {
+  display: flex;
+  width: 2rem;
+  height: 2rem;
+  margin-left: auto;
+  background: {
+    image: url("../../img/math/chevron-updown.svg");
+    repeat: no-repeat;
+    position: 50% 50%;
+    size: 0.875rem 1.5rem;
+  };
+  transition: 1s;
+
+  &.btn_dropdown__on {
+    transform: rotate(-180deg);
+  }
+}

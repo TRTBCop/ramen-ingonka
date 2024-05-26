@@ -1,0 +1,232 @@
+/* layout */
+#wrap {
+  height: 100%;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 1rem;
+  margin: 0 auto;
+}
+.container--sm {
+  width: 100%;
+  max-width: 520px;
+  padding: 0 1rem;
+  margin: 0 auto;
+}
+
+.container--md {
+  width: 100%;
+  max-width: 960px;
+  padding: 0 1rem;
+  margin: 0 auto;
+}
+
+$breakpoint-mobile: 768px;
+@mixin mobile {
+  @media (max-width: #{$breakpoint-mobile}) {
+    @content;
+  }
+}
+
+
+/* --------------------------------------------
+            new layout (학습쪽)
+-----------------------------------------------*/
+$right--w: 352px;
+$frame--h: 2.5rem;
+.grid {
+  display: flex;
+  width: 100%;
+  height: calc(100dvh - 40px);
+  gap: 2rem;
+  padding: 1rem;
+
+  //frame사이즈 --lg, --md, --sm
+  .frame {
+    display: flex;
+    flex-direction: column;
+
+    .container {
+      padding: 1rem;
+    }
+  }
+
+  .frame.col {
+    flex: 1;
+  }
+
+  .frame.col--sm {
+    min-width: $right--w;
+    max-width: $right--w;
+  }
+
+  .articles {
+    padding: 0;
+
+    article {
+      width: 90%;
+      height: 100%;
+      margin: 0;
+      line-height: 2;
+    }
+  }
+
+  .image_area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    height: 100%;
+    position: initial;
+    transform: translateY(0);
+  }
+
+  .theorem_area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .frame__head {
+    height: $frame--h;
+
+    &.title_area {
+      width: 100%;
+      height: $frame--h;
+      display: flex;
+      align-items: center;
+      background: {
+        color: $white;
+      };
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem 0.5rem 0 0;
+      border-bottom: 1px dashed $gray--lighter;
+
+      .title {
+        font-size: $size5;
+        line-height: 1.2;
+        padding: 0;
+        font-weight: normal;
+        color: $gray;
+        svg {
+          margin-right: 0.5rem;
+        }
+      }
+
+      .numbers {
+        margin-left: auto;
+      }
+
+      .btn_dropdown {
+        margin-left: auto;
+      }
+    }
+
+    &.tab_area {
+      height: 40px;
+
+      .tabs {
+        height: 40px;
+
+        li {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 40px;
+          font-weight: normal;
+          color: $gray--light;
+          &.current {
+            color: $gray;
+          }
+        }
+      }
+    }
+  }
+
+  .frame__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - #{$frame--h});
+    background: {
+      color: white;
+    };
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 1.5rem;
+    border-radius: 0 0 0.5rem 0.5rem;
+  }
+
+  .frame__body--center {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .frame__full {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    height: 100%;
+    color: $gray;
+  }
+
+  .numbers {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+
+    li {
+      width: 0.5rem;
+      list-style: none;
+      position: relative;
+
+      &::before {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        content: '';
+        width: 0.5rem;
+        height: 0.5rem;
+        background-color: rgba($blue, 0.3);
+        border-radius: 64px;
+      }
+
+      &.on {
+        &::before {
+          height: 1rem;
+          background-color: rgba($blue, 0.7);
+        }
+      }
+
+      &.done {
+        &::before {
+          background-color: rgba($blue, 0.7);
+        }
+      }
+    }
+  }
+
+  .current--answer {
+    position: relative;
+  }
+}
+
+.frame__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem 1rem;
+}

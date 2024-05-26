@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "noImplicitAny": false,
+    "allowJs": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "jsx": "preserve",
+    "strict": true,
+    "isolatedModules": true,
+    "target": "ESNext",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "types": [
+      "node"
+    ],
+    "paths": {
+      "@/*": [
+        "./resources/*"
+      ],
+    }
+  },
+  "include": [
+    "resources/admin/shims-vue.d.ts",
+    "resources/admin/**/*",
+    "resources/admin/**/*.vue",
+    "resources/brand/**/*",
+    "resources/brand/**/*.vue",
+    "resources/app/**/*",
+    "resources/app/**/*.vue",
+    "resources/html/**/*",
+    "resources/html/**/*.vue"
+    
+  ]
+}

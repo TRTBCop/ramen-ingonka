@@ -1,0 +1,1582 @@
+/* font-size */
+$size1: 3rem;
+$size2: 2rem;
+$size3: 1.5rem;
+$size4: 1.25rem;
+$size5: 1rem;
+$size6: 0.875rem;
+
+$sizes: (
+  1: 3rem,
+  2: 2rem,
+  3: 1.5rem,
+  4: 1.25rem,
+  5: 1rem,
+  6: 0.875rem,
+);
+
+/* text color */
+@each $value1, $value2 in $sizes {
+  .is--size#{$value1} {
+    font-size: #{$value2};
+  }
+}
+
+/* margin */
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+
+.mb-1 {
+  margin-bottom: 1rem !important;
+}
+
+.mt-1 {
+  margin-top: 1rem !important;
+}
+
+/* padding */
+.pv-0 {
+  padding: 0 !important;
+}
+
+.pv-3 {
+  padding: 3rem 0 !important;
+}
+
+.pt-0 {
+  padding-top: 0 !important;
+}
+
+
+/* component */
+.txt--left {
+  text-align: left;
+}
+
+.txt--center {
+  text-align: center;
+}
+
+.txt--right {
+  text-align: right;
+}
+
+.row {
+  display: flex;
+}
+
+.txt--bold {
+  font-weight: bold;
+}
+
+//숨기는 영역
+.invisible {
+  opacity: 0 !important;
+  cursor: default !important;
+  * {
+    cursor: default !important;
+  }
+}
+
+//리스트 (ul) 중 앞에 bullet 타입
+.lst--bullet {
+  list-style: {
+    type: disc;
+    position: inside;
+  };
+  margin-left: 2px;
+  li {
+    margin-bottom: 0.5rem;
+  }
+  li::marker {
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+//스크롤 커스텀
+body *::-webkit-scrollbar {
+  width: 8px;  /* 스크롤바의 너비 */
+}
+body *::-webkit-scrollbar-thumb {
+  height: 50%; /* 스크롤바의 길이 */
+  background: $gray--light;  /* 스크롤바의 색상 */
+
+  border-radius: 10px;
+}
+
+body *::-webkit-scrollbar-track {
+  background: $gray--lighter;  /*스크롤바 뒷 배경 색상*/
+}
+
+/* layout */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 2.5rem;
+  background-color: white;
+  color: $gray;
+  padding: 0 1rem;
+
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .col {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btns {
+    justify-content: end;
+    padding: 0;
+    margin: 0;
+    gap: 0.5rem;
+
+    button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+    }
+
+    svg {
+      font-size: $size4;
+    }
+  }
+
+  .timer {
+    justify-content: end;
+  }
+
+  .breadcrumb {
+    display: flex;
+    gap: 0.5rem;
+    font-size: $size6;
+
+    .badge--gray {
+      font-size: $size6;
+    }
+
+    .ico_chevron {
+      margin-left: 0.5rem;
+    }
+  }
+
+  .breadcrumb--sub {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1rem;
+      height: 1rem;
+      background-color: $gray--lightest;
+      font-size: 0.75rem;
+      border-radius: 1rem;
+
+      span {
+        display: none;
+      }
+
+      &.on {
+        width: fit-content;
+        height: 1.5rem;
+        padding: 0.25rem 0.5rem;
+
+        span {
+          display: block;
+        }
+      }
+
+      &.done {
+        &::before {
+          content: '';
+          width: 10px;
+          height: 10px;
+          background: {
+            image: url("../../img/math/check.svg");
+            size: contain;
+            repeat: no-repeat;
+            position: center center;
+          };
+        }
+
+        span {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.sidebar {
+  display: none;
+  z-index: 10;
+  width: 100vw;
+  height: 100%;
+  height: 100dvh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba($darker, 0.3);
+
+  &.show {
+    display: block;
+  }
+
+  .menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 320px;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 24px 0px 0px 24px;
+    color: $gray;
+    overflow: auto;
+  }
+
+  .btns {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bottom {
+    margin-top: auto;
+  }
+
+  .btn--close {
+    display: flex;
+    justify-content: flex-end;
+    font-size: $size3;
+  }
+
+  .menu__head {
+    display: flex;
+    gap: 1rem;
+
+    .profile__info {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .menu__section {
+    border-top: 2px dashed $gray--lighter;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    list-style: none;
+
+    li {
+
+      &.disabled {
+        pointer-events: none;
+
+        a {
+          color: $blue;
+          opacity: 0.3;
+          font-size: $size6;
+
+          &::after {
+            content: url("../../img/math/lock.svg");
+            margin-left: 0.5rem;
+          }
+        }
+      }
+
+      a {
+        width: 100%;
+        display: inline-block;
+        padding: 1rem 0.5rem;
+        font-weight: bold;
+        color: $gray;
+        border-radius: 8px;
+      }
+
+      &:hover {
+        a {
+          background: $navy--light;
+        }
+      }
+    }
+  }
+
+  .btns {
+    margin-top: auto;
+    padding: 0;
+
+    button {
+      font-weight: bold;
+      color: $gray;
+      font-size: $size5;
+      text-align: left;
+      padding: 1rem 0.5rem;
+
+      &:hover {
+        background: $navy--light;
+        border-radius: 8px;
+      }
+    }
+  }
+}
+
+
+.profile__img {
+  display: block;
+  background: {
+    image: url("../../img/math/profile_img.svg");
+    size: cover;
+    repeat: no-repeat;
+    position: 0 0;
+  };
+
+
+  @for $i from 1 to 9 {
+    &.profile__img--type0#{$i} {
+      background: {
+        image: url("../../img/math/profile_img.svg");
+      };
+
+      &.profile__img--sm {
+        width: 80px;
+        height: 80px;
+        background-position: (- ($i - 1) * 80px) 0 ;
+      }
+
+      &.profile__img--md {
+        width: 120px;
+        height: 120px;
+        background-position: (- ($i - 1) * 120px) 0;
+      }
+
+      &.profile__img--lg {
+        width: 160px;
+        height: 160px;
+        background-position: (- ($i - 1) * 160px) 0;
+      }
+    }
+  }
+}
+
+//타이머
+.counter {
+  display: flex;
+  justify-content: center;
+  gap: 0.25rem;
+  font-size: $size6;
+  color: $gray--light;
+
+  strong {
+    color: $gray;
+  }
+}
+
+.timer {
+  display: flex;
+  gap: 0.25rem;
+  font-size: $size5;
+  color: $gray--light;
+
+  svg {
+    margin-right: 0.25rem;
+  }
+
+  .time {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: $gray--light;
+    padding: 0 0.75rem;
+    @extend %mono;
+
+
+    &::before {
+      content: '';
+      display: block;
+      width: $size6;
+      height: $size6;
+      background: {
+        image: url("../../img/math/ico_clock_play.svg");
+        repeat: no-repeat;
+        size: contain;
+      };
+    }
+
+    &.time-pause {
+      &::before {
+        background-image: url("../../img/math/ico_clock_pause.svg");
+      }
+    }
+
+    &.timeover {
+      border-color: $danger;
+      color: $danger;
+
+      &::before {
+        filter: invert(41%) sepia(67%) saturate(4117%) hue-rotate(333deg) brightness(103%) contrast(105%);
+      }
+    }
+  }
+
+}
+
+/* 레이어 */
+.layer {
+  z-index: 9;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100vw;
+  height: 100dvh;
+  max-height: 100vh;
+  backdrop-filter: blur(5px);
+  background: {
+    color: rgba(black, 0.5)
+  };
+  overflow-y: auto;
+  color: $white;
+
+  .inner {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    max-width: 960px;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    padding: 1rem;
+
+    .btns {
+      button {
+        display: flex;
+        align-items: center;
+      }
+      svg {
+        margin: 0;
+      }
+    }
+  }
+
+  .layer__head {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    color: $white;
+
+    h2 {
+      @extend %dongle;
+      font-size: $size1;
+    }
+
+    h4 {
+      font-weight: normal;
+    }
+
+    .row {
+      gap: 1rem;
+    }
+  }
+
+  .layer__body {
+    width: 100%;
+    min-height: 120px;
+    max-height: 50vh;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    overflow-y: auto;
+    background: {
+      color: white;
+    };
+  }
+
+  .btns--answers {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    padding: 0;
+    margin-top: 1rem;
+
+    button {
+      width: 100%;
+      border-radius: 0.25rem;
+    }
+
+    .layer__box {    
+      height: 120px;
+      background-color: $white;
+      color: $gray;
+
+      &.correct {
+        border: 3px solid $success;
+        background-color: $bg--success;
+        color: $success;
+        svg {
+          filter: invert(64%) sepia(93%) saturate(1257%) hue-rotate(48deg) brightness(92%) contrast(104%);
+          * {
+            color: $success;
+          }
+        }
+      }
+
+      p {
+        display: inline-block;
+        transform: scale(2);
+      }
+
+      svg {
+        vertical-align: middle;
+        line-height: 1.5;
+        filter: invert(40%) sepia(8%) saturate(973%) hue-rotate(184deg) brightness(91%) contrast(84%);
+        * {
+          color: $gray;
+        }
+      }
+    }
+  }
+  .btns {
+    margin-left: auto;
+
+    &.btns--center {
+      margin: 0 auto;
+    }
+
+    &.btns--center {
+      margin-left: inherit;
+      margin-right: auto;
+    }
+  }
+}
+
+//레이어 훈련 결과
+.layer.ly__history {
+  .layer__body {
+    padding: 0;
+  }
+  .result_wrap {
+    height: 400px;
+    padding: 0;
+
+    .result__body {
+      height: 100%;
+    }
+  }
+}
+
+//레이어 무료체험
+.layer.ly__benefit {
+  .layer__body {
+    width: 560px;
+  }
+}
+
+//개념 요약하기 레이어
+.layer.ly__math {
+  backdrop-filter: blur(25px);
+  .inner {
+    top: 10vw;
+    transform: initial;
+  }
+  .layer__head {
+    justify-content: flex-start;
+  }
+  .layer__body {
+    p {
+      color: $darker;
+    }
+  }
+}
+
+//로딩 레이어
+.layer.ly__loading {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 240px;
+    height: 240px;
+  }
+  p {
+    font-size: $size2;
+  }
+}
+
+.layer.ly__help {
+  .row {
+    align-items: center;
+    gap: 1rem;
+
+    h1 {
+      font-size: $size1;
+      color: rgba($white, 0.3);
+    }
+  }
+  .inner {
+    flex-direction: column;
+  }
+  .dots {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    i {
+      display: block;
+      width: 0.5rem;
+      height: 0.5rem;
+      background-color: $gray;
+      border-radius: 100%;
+
+      &.current {
+        width: 1rem;
+        height: 1rem;
+        background-color: $blue;
+      }
+    }
+  }
+  .lst__help {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    .help__slide {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      text-align: center;
+
+      &.current {
+        display: flex;
+      }
+    }
+    img {
+      max-width: 512px;
+      height: 40vh;
+      max-height: 332px;
+    }
+    small {
+      margin-top: 1rem;
+      color: $gray--light;
+      font-size: $size5;
+    }
+    button {
+      position: absolute;
+      top: 30%;
+      color: $white;
+      font-size: $size1;
+
+      &.btn__prev {
+        left: 0;
+      }
+      &.btn__next {
+        right: 0;
+      }
+    }
+  }
+
+}
+
+//메인 레이어
+.layer.ly__main {
+  display: none;
+  backdrop-filter: blur(0);
+  background: {
+    color: rgba($darker, 0.8)
+  };
+
+  &.show {
+    display: flex;
+  }
+
+  .inner {
+    flex-direction: row;
+    width: 536px;
+    min-height: 240px;
+    height: fit-content;
+    max-height: 480px;
+    border-radius: 0.25rem;
+    box-shadow: 0px 4px 50px 0px rgba($darker, 0.25);
+    background-color: rgba($white, 0.2);
+    padding: 1rem 1.5rem;
+    overflow-y: auto;
+    backdrop-filter: blur(15px);
+
+    .curriculum__box {
+      width: 100%;
+    }
+
+    h2 {
+      @extend %dongle;
+      display: flex;
+      width: 100%;
+      font-size: $size1;
+      line-height: 1;
+      margin-bottom: 1rem;
+      button {
+        color: $white;
+        font-size: $size4;
+        margin-left: auto
+      }
+    }
+
+    h3 {
+      @extend %dongle;
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      font-size: $size2;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+//레이어 결과 상세
+.layer.ly__result {
+  color: $gray;
+  padding: 1rem;
+
+  .inner {
+    display: block;
+    border-radius: 0.5rem;
+  }
+  .frame__head {
+    background-color: $white;
+    border-radius:0.5rem 0.5rem 0 0 ;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px dashed $gray--light;
+    strong {
+      font-size: $size5;
+      margin-left: 0.5rem;
+    }
+  }
+  .frame__body {
+    max-height: 560px;
+    background-color: $white;
+    overflow-y: auto ;
+    padding: 1.5rem;
+    border-radius: 0 0 0.5rem 0.5rem ;
+
+    .result__summary h2 {
+      font-size: $size4;
+    }
+  }
+}
+
+/* 모달 */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  min-height: 240px;
+  max-height: 480px;
+  display: flex;
+  flex-direction: column;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.20);
+  border-radius: 0.5rem;
+  letter-spacing: -0.64px;
+  word-break: keep-all;
+
+  &.modal--md {
+    width: 640px;
+  }
+
+  .modal_head {
+    height: 3rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+
+    h3 {
+      font-size: $size5;
+      color: $gray;
+      line-height: 2;
+    }
+
+    .btn--close {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2em;
+      height: 2rem;
+      padding: 1rem;
+      margin-left: auto;
+      background-color: transparent;
+
+      svg {
+        font-size: $size5;
+        color: $gray--light;
+      }
+    }
+  }
+
+  .modal_body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+    text-align: center;
+    color: $gray;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      display: none; /* 크롬, 사파리, 오페라, 엣지 */
+    }
+
+    &.modal_body__txt {
+      justify-content: flex-start;
+      text-align: left;
+      p {
+        margin-top: 0;
+      }
+    }
+
+    &.modal_body__top {
+      justify-content: flex-start;
+    }
+
+    strong {
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin-bottom: 0.5rem;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .modal__semester {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+
+      li  {
+        width: calc(100% / 2 - 0.25rem);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem;
+        background-color: $gray--lightest;
+        border-radius: 4px;
+      }
+    }
+    &.profile_wrap {
+      height: fit-content;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 1rem 1.65rem;
+
+      .current {
+        .profile__img {
+          position: relative;
+          outline: 4px solid $brand;
+          border-radius: 100%;
+        }
+        .profile__img::before {
+          content: '';
+          width: 40px;
+          height: 40px;
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          background: {
+            color: $brand;
+            image: url("../../img/math/ico_check_white.svg");
+            repeat: no-repeat;
+            position: center;
+          };
+          border-radius: 100%;
+        }
+      }
+    }
+  }
+
+  .btns {
+    height: 72px;
+    justify-content: center;
+    margin-top: auto;
+    padding: 1rem 0;
+  }
+
+  ul.txt_area {
+    text-align: left;
+    padding: 1.5rem;
+    list-style-type: " • ";
+    list-style-position: inside;
+    border-radius: 0.25rem;
+    background-color: $bg--default;
+  }
+
+  .grade__switch {
+    margin: 0.75rem auto;
+  }
+}
+
+.dim {
+  z-index: 9;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(black, 0.6);
+}
+
+.insert {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  color: white;
+  align-items: center;
+
+  img {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+// progress dots : 진행상황, 서술형 문제 번호 등
+.steps {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  li {
+    background-color: $gray;
+    opacity: 0.3;
+    color: transparent;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 1rem;
+    transition: all 0.2s ease;
+
+    &.done {
+      opacity: 1;
+    }
+
+    &.current {
+      width: 0.75rem;
+      height: 1rem;
+      opacity: 1;
+    }
+  }
+}
+
+
+//키패드
+.keypad {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  &.show {
+    display: flex;
+  }
+
+  .keypad__answer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 0.5rem;
+
+    input {
+      width: 100%;
+      font-size: $size5;
+      text-align: center;
+      border: 1px solid $gray--lighter;
+      outline: none;
+      font-weight: bold;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      margin-bottom: 0.5rem;
+
+      &::placeholder {
+        font-size: $size5;
+        color: $gray--lighter;
+
+      }
+    }
+  }
+
+  .keypad__btns {
+    display: flex;
+    flex-wrap: wrap;
+
+    button {
+      width: calc(100% / 5);
+      height: 3rem;
+      background-color: transparent;
+      border-radius: 4px;
+      font-size: $size4;
+      font-weight: bold;
+
+      &:hover {
+        background-color: $gray--lighter;
+      }
+
+      &:active {
+        background-color: $gray--lighter;
+        color: white;
+      }
+    }
+
+    .keypad__sub {
+      color: $gray;
+
+      &:hover {
+        background-color: darken($gray--lighter, 10%);
+        color: $gray;
+      }
+
+      &:active {
+        background-color: darken($gray--lighter, 20%);
+        color: $gray;
+      }
+    }
+
+    .keypad__check {
+      flex: 1;
+      background-color: $gray;
+      color: white;
+      margin-top: 0.5rem;
+
+      &:hover {
+        background-color: darken($gray, 10%);
+      }
+
+      &:active {
+        background-color: darken($gray, 20%);
+      }
+    }
+
+    .keypad__check {
+      flex: 1;
+    }
+  }
+}
+
+//bubble영역
+.answers--bubble {
+  display: none;
+  width: 272px;
+  z-index: 1;
+  position: absolute;
+  top: 4rem;
+  display: none;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.3);
+
+  &.show {
+    display: flex;
+  }
+
+}
+
+// tab 공통
+.tabs {
+  display: flex;
+
+  li {
+    flex: 1;
+    text-align: center;
+    border-radius: 0.5rem 0.5rem 0 0;
+    background-color: rgba($white, 0.5);
+    font-size: $size5;
+    font-weight: bold;
+    cursor: pointer;
+
+    &.current {
+      background-color: $white;
+      color: $gray;
+
+      &::before {
+
+        filter: none;
+      }
+    }
+  }
+}
+
+.tabs--count {
+  gap: 4px;
+  counter-reset: number 0;
+
+  li {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    height: 40px;
+
+    &::before {
+      content: counter(number);
+      counter-increment: number 1;
+      display: block;
+      text-align: center;
+      width: 1.5rem;
+      height: 1.5rem;
+      font-size: $size5;
+      margin: 0 auto;
+      background-size: 100% 100%;
+      filter: grayscale(1);
+    }
+
+    &.correct {
+      &::before {
+        content: '';
+        background: {
+          image: url("../../img/math/ico_correct.svg");
+        }
+      }
+    }
+
+    &.wrong {
+      &::before {
+        content: '';
+        background: {
+          image: url("../../img/math/ico_wrong.svg");
+        }
+      }
+    }
+
+    &.check {
+      &::before {
+        content: '';
+        background: {
+          image: url("../../img/math/ico_check.svg");
+        }
+      }
+    }
+
+    &.triangle {
+      &::before {
+        content: '';
+        background: {
+          image: url("../../img/math/ico_triangle.svg");
+        }
+      }
+    }
+  }
+}
+
+.tab_content {
+  border: 2px solid $gray;
+  padding: 1.5rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+//결과 랭크 -- 별 모양
+.stars {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.star {
+  position: relative;
+  display: block;
+  background-size: 100% 100%;
+  background-image: url("../../img/math/star_default.svg");
+
+  &.star--lg {
+    width: 104px;
+    height: 104px;
+  }
+
+  &.star--md {
+    width: 32px;
+    height: 32px;
+  }
+
+  &.star--sm {
+    width: 24px;
+    height: 24px;
+  }
+
+  &.star--s {
+    background-image: url("../../img/math/star_s.svg");
+  }
+
+  &.star--a {
+    background-image: url("../../img/math/star_a.svg");
+  }
+
+  &.star--b {
+    background-image: url("../../img/math/star_b.svg");
+  }
+
+  &.star--c {
+    background-image: url("../../img/math/star_c.svg");
+  }
+
+  @for $i from 1 through 3 {
+    &.review--#{$i} {
+      &::before {
+        content: '#{$i}';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: $size6;
+        height: $size6;
+        background-color: $purple;
+        border-radius: 100%;
+        border: 1.4px solid $white;
+        font-size: $size5;
+        padding-top: 2px;
+        color: $white;
+        @extend %dongle;
+      }
+    }
+  }
+}
+
+//main_star
+$star: 96px;
+.training_star {
+  display: block;
+  width: $star;
+  height: $star;
+  background: {
+    image: url("../../img/math/main_stars.svg");
+    size: cover;
+    repeat: no-repeat;
+    position: (-($star * 4)) 0;
+  };
+
+  &.training_star--s {background-position: 0 0;}
+  &.training_star--a {background-position: (-($star * 1)) 0;}
+  &.training_star--b {background-position: (-($star * 2)) 0;}
+  &.training_star--c {background-position: (-($star * 3)) 0;}
+}
+
+//progress
+.progress {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+
+  progress {
+    width: 240px;
+    margin-top: 0.25rem;
+    appearance: none;
+
+    &::-webkit-progress-bar {
+      background-color: rgba($white, 0.2);
+      border-radius: 1rem;
+      height: 1rem;
+      overflow: hidden;
+    }
+
+    &::-webkit-progress-value {
+      background-color: $success;
+      border-radius: 1rem;
+      height: 1rem;
+    }
+  }
+}
+
+.btn__floating {
+  &__left {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 1.5rem;
+  }
+
+  &__right {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5em;
+  }
+}
+
+//ico (동그라미, 세모, 체크 등등)
+%ico {
+  &::before {
+    content: '';
+    width: 1.5rem;
+    height: 1.5rem;
+    display: block;
+    background: {
+      image: url("../../img/math/ico_correct.svg");
+    }
+  }
+}
+
+.ico__correct {
+  @extend %ico;
+
+  &::before {
+    background: {
+      image: url("../../img/math/ico_correct.svg");
+    }
+  }
+}
+
+.ico__wrong {
+  @extend %ico;
+
+  &::before {
+    background: {
+      image: url("../../img/math/ico_wrong.svg");
+    }
+  }
+}
+
+.ico__check {
+  @extend %ico;
+
+  &::before {
+    background: {
+      image: url("../../img/math/ico_check.svg");
+    }
+  }
+}
+
+.ico__triangle {
+  @extend %ico;
+
+  &::before {
+    background: {
+      image: url("../../img/math/ico_triangle.svg");
+    }
+  }
+}
+
+//자유모드 행성
+$planet: 180px;
+.semester {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  height: 100%;
+
+  .semester__thmb {
+    width: $planet;
+    height: $planet;
+    background: {
+      image: url("../../img/math/planets.svg");
+      repeat: no-repeat;
+      size: cover;
+    };
+
+    //학기 행성
+    &.semester--3-1 {background-position: (-($planet * 0)) 0;}
+    &.semester--3-2 {background-position: (-($planet * 1)) 0;}
+    &.semester--4-1 {background-position: (-($planet * 2)) 0;}
+    &.semester--4-2 {background-position: (-($planet * 3)) 0;}
+    &.semester--5-1 {background-position: (-($planet * 4)) 0;}
+    &.semester--5-2 {background-position: (-($planet * 5)) 0;}
+    &.semester--6-1 {background-position: (-($planet * 6)) 0;}
+    &.semester--6-2 {background-position: (-($planet * 7)) 0;}
+
+    //계통 행성
+    &.semester--1 {background-position: (-($planet * 8)) 0;}
+    &.semester--2 {background-position: (-($planet * 9)) 0;}
+    &.semester--3 {background-position: (-($planet * 10)) 0;}
+    &.semester--4 {background-position: (-($planet * 11)) 0;}
+    &.semester--5 {background-position: (-($planet * 12)) 0;}
+  }
+}
+
+$icon_planet: 1.5rem;
+.ico_semester {
+  width: $icon_planet;
+  height: $icon_planet;
+  background: {
+    image: url("../../img/math/planets.svg");
+    repeat: no-repeat;
+    size: cover;
+  };
+  &.ico_semester--1 {background-position: (-($icon_planet * 8)) 0;}
+  &.ico_semester--2 {background-position: (-($icon_planet * 9)) 0;}
+  &.ico_semester--3 {background-position: (-($icon_planet * 10)) 0;}
+  &.ico_semester--4 {background-position: (-($icon_planet * 11)) 0;}
+  &.ico_semester--5 {background-position: (-($icon_planet * 12)) 0;}
+}
+
+
+//체크박스
+.checkbox_wrap {
+  display: flex;
+  align-items: center;
+  line-height: 1;
+}
+
+//라디오박스
+.radio_wrap {
+  display: flex;
+  align-items: center;
+  line-height: 1;
+}
+
+
+//초등 중등 switch
+.switch {
+  width: 162px;
+  height: 40px;
+  position: relative;
+  display: inline-block;
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  input:checked + .slider:before {
+    content: '';
+    left: 53px;
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+
+  %switch__text {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: $size5;
+    color: $brand;
+    font-weight: bold;
+  }
+
+  .switch__text:before {
+    @extend %switch__text;
+    content: '초등';
+    left: 28px;
+  }
+
+  .switch__text:after {
+    @extend %switch__text;
+    content: '중등';
+    right: 30px;
+  }
+
+  input:checked + .slider {
+    background-color: $navy--light;
+
+    .switch__text:after {
+      color: $white;
+    }
+
+    .switch__text:before {
+      color: $brand;
+    }
+  }
+
+  .slider {
+    width: 163px;
+    height: 40px;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: $navy--light;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 112px;
+    font-size: $size6;
+
+    &:before {
+      content: '';
+      position: absolute;
+      width: 77px;
+      height: 32px;
+      left: 4px;
+      bottom: 4px;
+      background-color: $brand;
+      color: $white;
+      -webkit-transition: .4s;
+      transition: .4s;
+      border-radius: 50px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .switch__text:before {
+      color: $white;
+    }
+  }
+}
+
+//랭크
+.rank {
+  display: inline-block;
+  background: {
+    size: contain;
+  };
+
+  &--s {
+    background-image: url("../../../assets/img/math/rank_s.svg");
+  }
+
+  &--a {
+    background-image: url("../../../assets/img/math/rank_a.svg");
+  }
+
+  &--b {
+    background-image: url("../../../assets/img/math/rank_b.svg");
+  }
+
+  &--c {
+    background-image: url("../../../assets/img/math/rank_c.svg");
+  }
+
+  &--sm {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  &--md {
+    width: 3rem;
+    height: 3rem;
+  }
+  &--lg {
+    width: 120px;
+    height: 120px;
+  }
+}

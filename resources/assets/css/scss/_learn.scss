@@ -1,0 +1,1139 @@
+@import url("https://use.typekit.net/fyb1eyh.css");
+
+
+//학습 테마 3가지 (개념, 유형, 서술)
+.training__theme {
+  .grid {
+    height: calc(100% - 5.5rem);
+  }
+
+  .frame__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 5.5rem;
+    padding: 0 1rem;
+
+    .row {
+      gap: 0.5rem;
+    }
+  }
+
+  .character_area {
+    display: flex;
+    align-items: center;
+
+    .character {
+      display: block;
+      width: 264px;
+      height: 88px;
+    }
+
+    .comment {
+      position: relative;
+      padding: 0.5rem;
+      border-radius: 3px;
+      color: $white;
+      margin-left: 1rem;
+
+      &::before {
+        content: '◀';
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        top: 10px;
+        left: -12px;
+      }
+
+      &.comment__correct {
+        background-color: $green;
+
+        &::before {
+          color: $green;
+        }
+      }
+
+      &.comment__wrong {
+        background-color: $purple;
+
+        &::before {
+          color: $purple;
+        }
+      }
+    }
+  }
+}
+
+// 끊어 읽기
+.articles__hide {
+  display: none;
+}
+
+// 끊어 읽기
+.articles {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 2rem 0;
+  color: $darker;
+  font-size: $size5;
+  transition: 1s;
+  opacity: 1;
+
+  i.math {
+    img {
+      display: none;
+    }
+  }
+}
+
+// 끊어읽기 내의 이미지 링크
+span.spl {
+  position: relative;
+  min-height: 50px;
+  line-height: 1.5;
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  vertical-align: middle;
+  padding: 0.25rem;
+  margin: 0.25rem 0.25rem 0 0;
+  word-break: keep-all;
+  cursor: pointer;
+  border: {
+    width: 1px;
+    style: solid;
+    color: transparent;
+    radius: 0.25rem;
+  }
+  opacity: 0.1;
+
+  &:has(.fr-dib) {
+    display: block;
+    * {
+      display: block;
+    }
+  }
+
+  .answers--bubble {
+    z-index: 1;
+    display: none;
+    position: absolute;
+
+    &.show {
+      display: block;
+    }
+  }
+
+  strong {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &.show {
+    opacity: 1;
+    cursor: pointer;
+  }
+
+  &.current {
+    background-color: $bg--warning;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    opacity: 1;
+  }
+}
+
+// 끊어 읽기 어절에 해당하는 이미지가 있는 경우
+span.spl.link {
+  background-color: $bg--primary;
+  border-radius: 0.25rem;
+
+  &.current {
+    border: {
+      style: solid;
+    }
+    background-color: $bg--warning;
+  }
+
+  br {
+    display: none;
+  }
+
+  &__pressed {
+    border: {
+      width: 1px;
+      style: solid;
+      color: $blue--secondary;
+    }
+    background-color: $bg--primary;
+  }
+}
+
+//스켈레톤
+.skeleton {
+  .spl {
+    position: relative;
+
+    &::before {
+      z-index: 10;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: $gray;
+      border-radius: 0.25rem;
+    }
+  }
+
+  .spl.show {
+    &::before {
+      content: none;
+      background-color: transparent;
+    }
+  }
+}
+
+.articles .spl.image {
+  display: inline-block;
+  height: auto;
+}
+
+article {
+  padding-bottom: 1.5rem;
+}
+
+%white_box {
+  background-color: white;
+  padding: 1rem;
+}
+
+//개념읽기 이미지영역
+.image_area {
+  &.hide {
+    opacity: 0;
+  }
+
+  .image__box {
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid $gray--lighter;
+    border-radius: 0.25rem;
+
+    img {
+      width: 100%;
+      height: 100%;
+      max-height: 100%;
+      object-fit: cover;
+    }
+  }
+
+
+  .image_count {
+    @extend %white_box;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0 0 0.5rem 0.5rem;
+
+    strong {
+      span {
+        color: $gray;
+        margin: 0 0.25rem;
+      }
+
+      .num__current {
+        color: $primary;
+      }
+    }
+
+
+    %btn_arrow {
+      background-color: transparent;
+
+      &::before {
+        content: url("../../img/math/ico/ico_arrow.svg");
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2rem;
+        height: 2rem;
+        font-size: 1.5rem;
+      }
+    }
+
+    .btn__prev {
+      @extend %btn_arrow;
+    }
+
+    .btn__next {
+      @extend %btn_arrow;
+
+      &::before {
+        transform: scaleX(-1);
+      }
+    }
+  }
+}
+
+//보기영역, 오답해설
+%box {
+  width: 100%;
+  background-color: $gray__lightest;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.question__box {
+  @extend %box;
+  margin-bottom: 1rem;
+  background-color: white;
+  border: 1px solid $gray--lighter;
+
+  * {
+    line-height: 1.5;
+    vertical-align: baseline;
+  } 
+
+  svg {
+    vertical-align: middle;
+  }
+
+  p {
+    margin-bottom: 1rem;
+  }
+
+  img {
+    margin: 0.5rem 0;
+  }
+
+
+  &.question__box__explain {
+    p {
+      line-height: 2.5;
+    }
+
+    padding: 1.5rem;
+  }
+
+
+  .example {
+    line-height: 3;
+  }
+
+  .question__box__toggle {
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 0.25rem;
+    color: $gray;
+
+    h3 {
+      width: calc(100% - 2rem);
+      font-size: $size6;
+    }
+  }
+}
+
+//공통
+@mixin border($border--color, $bg--color) {
+  background-color: $bg--color;
+  border: $border--color 1px solid;
+  color: $darker;
+}
+
+//선지영역
+.answers {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  flex-wrap: wrap;
+  counter-reset: number;
+  gap: 0.75rem;
+
+}
+
+.answers--input > *, .answers--choice button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 3rem;
+  height: auto;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: $size4;
+  background-color: white;
+  border: 1px solid var(--border-gray100, $gray__lighter);
+
+  & > span {
+    width: calc(100% - 1.5rem);
+    color: black;
+    font-size: $size5;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding-left: 0.5rem;
+    overflow-wrap: anywhere;
+
+    img {
+      max-width: 100%;
+    }
+
+    svg {
+      width: fit-content;
+      max-width: 100%;
+      height: auto;
+    }
+
+  }
+
+  %answer_number {
+    display: inline;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 4px;
+    color: $gray;
+    font-style: normal;
+    font-size: $size6;
+    color: $gray;
+    font-weight: bold;
+  }
+
+  .answer__sign {
+    @extend %answer_number;
+    width: 2rem;
+    font-weight: normal;
+    color: $gray--light;
+    line-height: 1.75;
+    text-wrap: nowrap;
+  }
+
+  &.answer__correct {
+    @include border($green--secondary, $green--light);
+  }
+
+  &.answer__wrong__check {
+    @include border($green--secondary, $green--light);
+  }
+
+  &.answer__wrong {
+    @include border($purple--secondary, $purple--light);
+  }
+
+  &.answer__check {
+    @include border($blue--secondary, $blue--light);
+  }
+
+  &.answer__active {
+    @include border($warning, $white);
+  }
+}
+
+//주관식
+.answers--input {
+  .answer__correct, .answer__wrong, .answer__wrong__check {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 0.5rem;
+      transform: translateY(-50%);
+      width: 1.5rem;
+      height: 1.5rem;
+      display: block;
+      background-size: 100% 100%;
+      opacity: 0.3;
+    }
+  }
+
+  .answer__correct {
+    &::before {
+      background-image: url("../../img/math/ico_correct.svg");
+    }
+  }
+
+  .answer__wrong {
+    &::before {
+      background-image: url("../../img/math/ico_wrong.svg");
+    }
+  }
+
+  .answer__wrong__check {
+    @include border($green--secondary, $green--light);
+
+    &::before {
+      background-image: url("../../img/math/ico_check.svg");
+    }
+  }
+}
+
+//선지 선택형
+.answers--choice {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  flex-wrap: wrap;
+  counter-reset: number;
+  gap: 0.75rem;
+
+  button {
+    padding: 0.5rem;
+  }
+
+  .answer__number {
+    @extend %answer_number;
+    background-color: $gray--lightest;
+
+    &::before {
+      counter-increment: number;
+      content: counter(number);
+      font-weight: bold;
+      font-size: $size6;
+      color: $gray;
+    }
+
+    svg {
+      width: 1rem;
+      height: auto;
+    }
+  }
+
+  @mixin number($color, $border--color) {
+    box-shadow: 0px 4px 0px 0px $border--color;
+    .answer__number {
+      background-color: white;
+
+      &::before {
+        color: $color;
+      }
+    }
+  }
+
+  button {
+    border-width: 2px !important;
+    box-shadow: 0px 4px 0px 0px $gray__lighter;
+
+    &::before {
+      content: none !important;
+    }
+
+    .answer__number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &::before {
+        width: 1.5rem;
+        height: 1.5rem;
+        display: block;
+        background-size: 100% 100%;
+      }
+    }
+
+    &.answer__correct {
+      @include number($green, $green--secondary);
+
+      .answer__number {
+        &::before {
+          content: "";
+          background-image: url("../../img/math/ico_correct.svg");
+        }
+      }
+    }
+
+    &.answer__wrong__check {
+      @include number($green, $green--secondary);
+
+      .answer__number {
+        &::before {
+          content: "";
+          background-image: url("../../img/math/ico_check.svg");
+        }
+      }
+    }
+
+    &.answer__wrong {
+      @include number($purple, $purple--secondary);
+
+      .answer__number {
+        &::before {
+          content: "";
+          background-image: url("../../img/math/ico_wrong.svg");
+        }
+      }
+    }
+
+    &.answer__check {
+      @include number($blue, $blue--secondary);
+    }
+  }
+}
+
+/* 개념훈련 완료페이지 */
+@import "blank";
+
+svg text[font-style='italic'] {
+  font-family: schoolbook, serif;
+  font-style: italic;
+}
+
+.toggle_area {
+  width: 100%;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+  border-bottom: 2px dashed $gray--lighter;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .answers--bubble {
+    display: none;
+    position: initial;
+    box-shadow: none;
+    background-color: $gray--lightest;
+    padding: 1rem;
+    border: 0;
+
+    &.show {
+      display: flex;
+    }
+  }
+
+  .toggle__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0 1rem;
+    color: $gray;
+
+    &--white {
+      background-color: white;
+      line-height: 1;
+      padding: 1rem;
+      border-radius: 0.5rem;
+    }
+
+    h3 {
+      font-size: $size5;
+      font-weight: normal;
+    }
+  }
+
+  .answers {
+    margin: 0 0 1rem 0;
+  }
+}
+
+
+//결과페이지(중간결과, 최종결과)
+.result_wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  height: calc(100dvh - 40px);
+  padding: 1rem;
+  color: $gray;
+
+  .result__head {
+    background-color: $white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+
+    h4 {
+      margin-bottom: 0.25rem;
+    }
+
+    .badge__time {
+      background-color: $gray--lightest;
+      padding: 0.25rem 0.5rem;
+      font-size: $size6;
+      margin-right: 1rem;
+      border-radius: 3px;
+      span {
+        font-weight: normal;
+        margin-left: 0.5rem;
+      }
+    }
+  }
+
+  .result__body {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    background-color: $white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+
+    .result__rank__total {
+      position: relative;
+      width: 224px;
+      border-radius: 0.25rem;
+      box-shadow: 0 0 0 16px rgba(white, 0.2) inset;
+
+      .btn__layer {
+        position: absolute;
+        width: 2rem;
+        height: 2rem;
+        top: 1.5rem;
+        right: 1.25rem;
+
+        svg {
+          font-size: 1.25rem;
+        }
+      }
+
+      .result__rank__total__layer {
+        z-index: 6;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: {
+          color: rgba(black, 0.3)
+        };
+        backdrop-filter: blur(10px);
+        box-shadow: 0 0 0 16px rgba(white, 0.2) inset;
+        border-radius: 0.25rem;
+
+        div {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        dl {
+          width: 75%;
+          text-align: right;
+          color: white;
+          font-size: $size5;
+          line-height: 1.7;
+
+          dt {
+            width: 70%;
+            float: left;
+
+            i {
+              display: inline-block;
+              width: 1rem;
+              margin-right: 1.5rem;
+            }
+          }
+
+          dd {
+            margin-left: 0;
+          }
+        }
+
+        svg {
+          color: white
+        }
+      }
+
+      .star__card {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        border-radius: 0.25rem;
+        border: {
+          width: 1rem;
+          color: rgba($white, 0.2);
+          style: solid;
+        }
+
+        &::after {
+          z-index: 5;
+          @extend %dongle;
+          font-size: $size1;
+          color: $darker;
+        }
+
+        &::before {
+          z-index: 0;
+          content: '';
+          position: absolute;
+          top: 49%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          display: block;
+          width: 224px;
+          height: 318px;
+          background: {
+            image: url("../../img/math/shine.svg");
+            size: 100% 100%;
+          };
+        }
+
+        .star {
+          z-index: 1;
+          width: 104px;
+          height: 104px;
+        }
+
+        &.star__card--s {
+          background-color: #E3C0FF;
+
+          &::after {
+            content: 'Excellent!';
+            color: $white;
+          }
+
+          .star {
+            position: relative;
+
+            &::before {
+              content: '';
+              position: absolute;
+              width: 104px;
+              height: 104px;
+              top: 60%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              background: {
+                image: url("../../img/math/sparkles.svg");
+                size: 100% 100%;
+              };
+            }
+          }
+        }
+
+        &.star__card--a {
+          background-color: #FFED75;
+
+          &::after {
+            content: 'Great!';
+          }
+        }
+
+        &.star__card--b {
+          background-color: #E4E6EA;
+
+          &::after {
+            content: 'Good!';
+          }
+        }
+
+        &.star__card--c {
+          background-color: #FFE2C7;
+
+          &::after {
+            content: 'Nice Try!';
+          }
+        }
+      }
+    }
+  }
+
+  .result__tip {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: $white;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    color: $darker;
+
+    .result--character {
+      display: block;
+      width: 56px;
+      height: 56px;
+      background-size: 100% 100%;
+    }
+  }
+
+  .frame__bottom {
+    height: auto;
+    padding: 0;
+
+    button {
+      display: flex;
+      align-items: center;
+
+      svg {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+  &.intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+
+.result__box {
+  @extend %box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+  color: $gray;
+  background-color: $white;
+  border: 1px solid $gray--lighter;
+
+  &--gray {
+    background-color: $gray--lightest;
+    border: 0;
+  }
+
+
+  .row {
+    align-items: center;
+  }
+
+  &.result__box--lg {
+    margin-bottom: 1.5rem;
+
+    .col {
+      padding: 0.5rem;
+
+      p, h2 {
+        font-size: $size5;
+      }
+    }
+  }
+
+  h3 {
+    padding: 0.5rem;
+    font-size: $size5;
+  }
+
+  .lst__result {
+    display: flex;
+    gap: 0.5rem;
+
+    li {
+      background-color: $white;
+      border-radius: 0.25rem;
+      padding: 0.25rem 0.5rem;
+      text-align: center;
+
+      span {
+        font-size: $size6;
+        color: $gray--light;
+        line-height: 1;
+      }
+
+      p {
+        text-align: center;
+        font-size: $size5;
+      }
+
+      &.lst__result__percent {
+        width: 100px;
+      }
+    }
+  }
+}
+
+.result__score {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-start;
+  margin: 1rem auto 0;
+  padding: 1rem;
+  background-color: $gray--lightest;
+  counter-reset: section;
+
+  li {
+    width: calc((100% - 0.5rem) / 2);
+    height: 64px;
+    border-radius: 0.2rem;
+    padding: 0.5rem 1rem 1rem 1rem;
+    background-color: $white;
+    text-align: center;
+
+
+    i {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.25rem;
+
+      &::before {
+        content: '';
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+      &::after {
+        font-style: normal;
+        letter-spacing: -1.5px;
+      }
+    }
+
+    &.correct i {
+      &::before {
+        background: {
+          image: url("../../img/math/ico_correct.svg");
+        }
+      }
+
+      &::after {
+        content: '정답';
+        color: $green;
+      }
+    }
+
+    &.wrong i {
+      &::before {
+        background: {
+          image: url("../../img/math/ico_wrong.svg");
+        }
+      }
+      &::after {
+        content: '오답';
+        color: $purple;
+      }
+    }
+
+    &::before {
+      counter-increment: section;
+      content: counter(section) "번";
+      color: $gray--light;
+    }
+  }
+}
+
+.result__summary {
+  width: 100%;
+  margin: 0 auto 0;
+  text-align: center;
+
+  h2 {
+    font-size: $size3;
+    color: $gray;
+  }
+  .rank {
+    position: relative;
+
+    &::before {
+      content: url("../../../assets/img/math/result_deco.svg");
+      position: absolute;
+      left: -60px;
+      display: inline-block;
+      width: 60px;
+      height: 120px;
+      transform: scaleX(-1);
+    }
+    &::after {
+      content: url("../../../assets/img/math/result_deco.svg");
+      position: absolute;
+      right: -60px;
+      display: inline-block;
+      width: 60px;
+      height: 120px;
+    }
+  }
+
+  .result__progress {
+    margin: 1rem 0 1.5rem;
+
+    strong {
+      font-size: $size4;
+      padding: 0.25rem;
+    }
+  }
+}
+
+.result__progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  progress {
+    height: 8px;
+    -webkit-appearance: none;
+  }
+
+  ::-webkit-progress-value {
+    background-color: $question;
+    border-radius: 50px;
+
+  }
+
+  ::-webkit-progress-bar {
+    background-color: $gray--lighter;
+    border-radius: 50px;
+  }
+}
+
+@mixin progress ($color) {
+  strong {color: $color;}
+
+  ::-webkit-progress-value {
+    background-color: $color;
+  }
+}
+
+.result__progress--s {
+ @include progress($blue);
+}
+.result__progress--a {
+  @include progress($green);
+}
+.result__progress--b {
+  @include progress($yellow);
+}
+.result__progress--c {
+  @include progress($gray);
+}
+
+
+.tbl__result {
+  width: calc(100% - 224px - 1rem);
+  height: 100%;
+  text-align: center;
+
+  th, td {
+    font-weight: normal;
+    padding: 1rem;
+    border: 0;
+  }
+
+  th {
+    font-size: $size5;
+  }
+
+  tr {
+    font-size: $size4;
+    border-bottom: 1px dashed $gray--lighter;
+  }
+
+  .rank {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  tbody {
+    tr:last-child {
+      border-bottom: 0;
+      background-color: $gray--lightest;
+      border-radius: 0.25rem;
+    }
+  }
+}
+

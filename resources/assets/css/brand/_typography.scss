@@ -1,0 +1,25 @@
+/* font-size */
+$size1: 3rem;
+$size2: 2rem;
+$size3: 1.5rem;
+$size4: 1.25rem;
+$size5: 1rem;
+$size6: 0.875rem;
+$size7: 0.875rem;
+$size8: 0.875rem;
+
+$sizes: (
+  1: 3rem,
+  2: 2rem,
+  3: 1.5rem,
+  4: 1.25rem,
+  5: 1rem,
+  6: 0.875rem,
+);
+
+/* text color */
+@each $value1, $value2 in $sizes {
+  .is--size#{$value1} {
+    font-size: #{$value2};
+  }
+}

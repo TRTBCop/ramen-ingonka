@@ -1,0 +1,79 @@
+.pretest__semester {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  li {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid $gray--lighter;
+    border-radius: 4px;
+    font-size: $size5;
+    color: $gray;
+    cursor: pointer;
+
+    &.current {
+      border: 2px solid $blue--secondary;
+      background-color: $blue--light;
+    }
+
+    h3 {
+      font-size: $size5;
+    }
+    .row {
+      margin-left: auto;
+      gap: 0.5rem;
+      div {
+        text-align: center;
+        p {
+          font-size: $size6;
+          color: $gray--light;
+        }
+      }
+      svg {
+        font-size: $size4;
+        color: $gray--light;
+      }
+    }
+  }
+}
+
+ .links {
+   display: flex;
+   justify-content: center;
+   gap: 2.5rem;
+   text-align: center;
+
+   a {
+     width: 56px;
+     height: 56px;
+     display: inline-flex;
+     align-items: center;
+     justify-content: center;
+     background-color: $gray;
+     border-radius: 100%;
+     svg {
+       color: white;
+       font-size: $size4;
+     }
+   }
+
+   p {
+     font-size: $size5;
+     line-height: 1;
+     padding-top: 0.5rem;
+   }
+ }
+
+ //pretest done
+.pretest__result {
+  h2 {
+    margin: 1rem 0;
+    color: $gray;
+  }
+  .btns {
+    padding: 0.5rem 0 1.5rem;
+  }
+}

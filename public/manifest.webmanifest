@@ -1,0 +1,30 @@
+{
+  "name": "리딩수학 앱",
+  "short_name": "리딩수학",
+  "start_url": "/app/login",
+  "display": "fullscreen",
+  "lang": "ko-KR",
+  "description": "리딩수학 학습프로그램",
+  "theme_color": "#0077CB",
+  "background_color": "#2697E8",
+  "dir": "ltr",
+  "orientation" : "landscape",
+  "icons": [
+    {
+      "src": "/favicon-72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
